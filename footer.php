@@ -11,7 +11,7 @@
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/01_STAIR_Logo_original.png"
                         alt="STAIR Logo" class="h-10 w-auto object-contain">
                 </a>
-                <p class="text-text-lighter dark:text-dark-text-muted text-sm">© <span id="copyright-year">2025-today</span>
+                <p class="text-text-lighter dark:text-dark-text-muted text-sm">© <span id="copyright-year">2016-today</span>
                     STAIR. Alle Rechte vorbehalten. <?php
                     $impressum = get_page_by_path('impressum');
                     if ($impressum): ?>
