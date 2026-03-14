@@ -3,7 +3,7 @@
  * List View Template
  *
  * A custom template for The Events Calendar list view.
- * 
+ *
  * Override this template in your own theme by creating a file at [your-theme]/tribe-events/list.php
  *
  * @package TribeEventsCalendar
@@ -14,10 +14,10 @@ if (!defined('ABSPATH')) {
     die('-1');
 }
 
-use Tribe\Events\Views\V2\View;
 use Tribe\Events\Views\V2\iCalendar\Links\Google_Calendar;
 use Tribe\Events\Views\V2\iCalendar\Links\Outlook_365;
 use Tribe\Events\Views\V2\iCalendar\Links\Outlook_Live;
+use Tribe\Events\Views\V2\View;
 
 get_header();
 ?>
@@ -36,20 +36,20 @@ get_header();
             <?php
             // Custom Queries to replicate the logic from the custom page template
             // Note: We are ignoring the global query to enforce this specific layout
-        
-            $upcoming_events = tribe_get_events(array(
+
+            $upcoming_events = tribe_get_events([
                 'posts_per_page' => -1,
                 'start_date' => 'now',
                 'orderby' => 'event_date',
                 'order' => 'ASC',
-            ));
+            ]);
 
-            $past_events = tribe_get_events(array(
+            $past_events = tribe_get_events([
                 'posts_per_page' => 3,
                 'end_date' => 'now',
                 'orderby' => 'event_date',
                 'order' => 'DESC',
-            ));
+            ]);
             ?>
 
             <!-- Upcoming Events -->
@@ -93,7 +93,7 @@ get_header();
                                         $ical_link = tribe_get_ical_link();
 
                                         // iCalendar (webcal)
-                                        $webcal_link = str_replace(array('http://', 'https://'), 'webcal://', $ical_link);
+                                        $webcal_link = str_replace(['http://', 'https://'], 'webcal://', $ical_link);
 
                                         // outlook .ics (append outlook-ical=1)
                                         $separator = (strpos($ical_link, '?') === false) ? '?' : '&';
@@ -103,12 +103,12 @@ get_header();
                                         // fallback if something goes wrong
                                         $ical_link = tribe_get_ical_link();
                                         $google_link = 'https://www.google.com/calendar/render?cid=' . urlencode($ical_link);
-                                        $webcal_link = str_replace(array('http://', 'https://'), 'webcal://', $ical_link);
+                                        $webcal_link = str_replace(['http://', 'https://'], 'webcal://', $ical_link);
                                         $outlook_365_link = '#'; // disable or hide if failed
                                         $outlook_live_link = '#';
                                         $outlook_ical_link = $ical_link;
                                     }
-                                    ?>
+                        ?>
 
                                     <?php if ($google_link): ?>
                                         <a href="<?php echo esc_url($google_link); ?>" target="_blank" rel="noopener noreferrer"
@@ -330,14 +330,14 @@ get_header();
                     </div>
                     
                     <div class="mt-8 text-center">
-                        <?php 
+                        <?php
                         // Find the page with the "Vergangene Events" template
-                        $past_events_page = get_pages(array(
+                        $past_events_page = get_pages([
                             'meta_key' => '_wp_page_template',
-                            'meta_value' => 'templates/past-events.php'
-                        ));
-                        $past_events_url = !empty($past_events_page) ? get_permalink($past_events_page[0]->ID) : '#';
-                        ?>
+                            'meta_value' => 'templates/past-events.php',
+                        ]);
+                $past_events_url = !empty($past_events_page) ? get_permalink($past_events_page[0]->ID) : '#';
+                ?>
                         <a href="<?php echo esc_url($past_events_url); ?>" 
                             class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-dark-surface border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
                             Alle vergangenen Events anzeigen

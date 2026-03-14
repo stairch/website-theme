@@ -1,7 +1,7 @@
 <?php
 /**
  * Custom Post Type: STAIR Members
- * 
+ *
  * Registers the stair_member CPT and associated meta boxes
  * for displaying board members on the Vorstand page.
  */
@@ -9,8 +9,9 @@
 /**
  * Register the STAIR Member custom post type
  */
-function stair_register_member_cpt() {
-    $labels = array(
+function stair_register_member_cpt()
+{
+    $labels = [
         'name'                  => 'STAIR Members',
         'singular_name'         => 'STAIR Member',
         'menu_name'             => 'STAIR Members',
@@ -23,23 +24,23 @@ function stair_register_member_cpt() {
         'not_found'             => 'No members found',
         'not_found_in_trash'    => 'No members found in trash',
         'all_items'             => 'All Members',
-    );
+    ];
 
-    $args = array(
+    $args = [
         'labels'             => $labels,
         'public'             => true,
         'publicly_queryable' => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => array('slug' => 'member'),
+        'rewrite'            => ['slug' => 'member'],
         'capability_type'    => 'post',
         'has_archive'        => false,
         'hierarchical'       => false,
         'menu_position'      => 5,
         'menu_icon'          => 'dashicons-groups',
-        'supports'           => array('title', 'thumbnail'), // Title = Name, Thumbnail = Photo
-    );
+        'supports'           => ['title', 'thumbnail'], // Title = Name, Thumbnail = Photo
+    ];
 
     register_post_type('stair_member', $args);
 }
@@ -48,7 +49,8 @@ add_action('init', 'stair_register_member_cpt');
 /**
  * Add meta boxes for member details
  */
-function stair_member_meta_boxes() {
+function stair_member_meta_boxes()
+{
     add_meta_box(
         'stair_member_details',
         'Member Details',
@@ -63,7 +65,8 @@ add_action('add_meta_boxes', 'stair_member_meta_boxes');
 /**
  * Render the meta box fields
  */
-function stair_member_details_callback($post) {
+function stair_member_details_callback($post)
+{
     wp_nonce_field('stair_member_details_nonce', 'stair_member_nonce');
 
     $position = get_post_meta($post->ID, '_stair_member_position', true);
@@ -104,9 +107,10 @@ function stair_member_details_callback($post) {
 /**
  * Save meta box data
  */
-function stair_save_member_meta($post_id) {
+function stair_save_member_meta($post_id)
+{
     // Security checks
-    if (!isset($_POST['stair_member_nonce']) || 
+    if (!isset($_POST['stair_member_nonce']) ||
         !wp_verify_nonce($_POST['stair_member_nonce'], 'stair_member_details_nonce')) {
         return;
     }
@@ -137,8 +141,9 @@ add_action('save_post_stair_member', 'stair_save_member_meta');
 /**
  * Add custom columns to the members list in admin
  */
-function stair_member_admin_columns($columns) {
-    $new_columns = array();
+function stair_member_admin_columns($columns)
+{
+    $new_columns = [];
     foreach ($columns as $key => $value) {
         $new_columns[$key] = $value;
         if ($key === 'title') {
@@ -154,7 +159,8 @@ add_filter('manage_stair_member_posts_columns', 'stair_member_admin_columns');
 /**
  * Populate custom columns
  */
-function stair_member_admin_column_content($column, $post_id) {
+function stair_member_admin_column_content($column, $post_id)
+{
     switch ($column) {
         case 'position':
             echo esc_html(get_post_meta($post_id, '_stair_member_position', true));
@@ -172,9 +178,9 @@ add_action('manage_stair_member_posts_custom_column', 'stair_member_admin_column
 /**
  * Make order column sortable
  */
-function stair_member_sortable_columns($columns) {
+function stair_member_sortable_columns($columns)
+{
     $columns['order'] = 'order';
     return $columns;
 }
 add_filter('manage_edit-stair_member_sortable_columns', 'stair_member_sortable_columns');
-

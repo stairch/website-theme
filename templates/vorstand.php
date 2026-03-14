@@ -1,10 +1,10 @@
 <?php
 /**
  * Template Name: Vorstand
- * 
+ *
  * Displays all STAIR board members in a grid layout.
  * Create a page called "Vorstand" and select this template.
- * 
+ *
  * @package STAIR
  */
 
@@ -17,7 +17,7 @@ get_header();
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-text-dark dark:text-dark-text mb-4"><?php the_title(); ?></h1>
             <p class="text-lg text-text-light dark:text-dark-text-muted max-w-2xl mx-auto">
-                <?php 
+                <?php
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();
@@ -28,20 +28,20 @@ get_header();
                         }
                     }
                 }
-                ?>
+?>
             </p>
         </div>
 
         <!-- Members Grid -->
         <?php
-        $members = new WP_Query(array(
+        $members = new WP_Query([
             'post_type' => 'stair_member',
             'posts_per_page' => -1,
             'orderby' => 'meta_value_num',
             'meta_key' => '_stair_member_order',
             'order' => 'ASC',
-        ));
-        ?>
+        ]);
+?>
 
         <?php if ($members->have_posts()): ?>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

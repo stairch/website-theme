@@ -23,7 +23,7 @@
                     <!-- Featured Image -->
                     <?php if (has_post_thumbnail()): ?>
                         <div class="mb-12 rounded-xl overflow-hidden shadow-lg">
-                            <?php the_post_thumbnail('large', array('class' => 'w-full h-auto object-cover')); ?>
+                            <?php the_post_thumbnail('large', ['class' => 'w-full h-auto object-cover']); ?>
                         </div>
                     <?php endif; ?>
 

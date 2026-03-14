@@ -60,14 +60,14 @@ get_header(); ?>
             <h2 class="text-2xl font-bold text-text-dark dark:text-dark-text mb-8 text-center">Unsere Partner</h2>
 
             <?php
-            $sponsors_query = new WP_Query(array(
+            $sponsors_query = new WP_Query([
                 'post_type' => 'sponsor',
                 'posts_per_page' => -1,
                 'orderby' => 'title',
                 'order' => 'ASC',
-            ));
+            ]);
 
-            if ($sponsors_query->have_posts()): ?>
+if ($sponsors_query->have_posts()): ?>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <?php while ($sponsors_query->have_posts()):
                         $sponsors_query->the_post();
@@ -80,11 +80,11 @@ get_header(); ?>
                                 <?php if ($sponsor_url): ?>
                                     <a href="<?php echo esc_url($sponsor_url); ?>" target="_blank" rel="noopener noreferrer"
                                         class="block w-full h-full flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100 transform hover:scale-105">
-                                        <?php the_post_thumbnail('medium', array('class' => 'max-h-24 w-auto object-contain')); ?>
+                                        <?php the_post_thumbnail('medium', ['class' => 'max-h-24 w-auto object-contain']); ?>
                                     </a>
                                 <?php else: ?>
                                     <div class="w-full h-full flex items-center justify-center grayscale opacity-80">
-                                        <?php the_post_thumbnail('medium', array('class' => 'max-h-24 w-auto object-contain')); ?>
+                                        <?php the_post_thumbnail('medium', ['class' => 'max-h-24 w-auto object-contain']); ?>
                                     </div>
                                 <?php endif; ?>
                             <?php else: ?>
@@ -101,7 +101,7 @@ get_header(); ?>
                             <?php endif; ?>
                         </div>
                     <?php endwhile;
-                    wp_reset_postdata(); ?>
+wp_reset_postdata(); ?>
                 </div>
             <?php else: ?>
                 <div class="text-center py-12 bg-white dark:bg-dark-surface rounded-xl shadow-sm">

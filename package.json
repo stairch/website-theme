@@ -8,7 +8,8 @@
     "build:css": "bunx @tailwindcss/cli -i ./input.css -o ./style.css",
     "watch:css": "bunx @tailwindcss/cli -i ./input.css -o ./style.css --watch",
     "build": "bun run build:css",
-    "dev": "bun run watch:css"
+    "dev": "bun run watch:css",
+    "format:fix": "vendor/bin/php-cs-fixer fix"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",

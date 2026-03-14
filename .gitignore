@@ -37,3 +37,6 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .DS_Store
 
 style.css
+
+# PHP-CS-Fixer
+.php-cs-fixer.cache

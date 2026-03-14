@@ -29,75 +29,75 @@
                 <p class="text-text-lighter dark:text-dark-text-muted text-sm">Mit Unterstützung von:</p>
                 <?php
                 // Fetch all sponsors
-                $carousel_sponsors = new WP_Query(array(
+                $carousel_sponsors = new WP_Query([
                     'post_type' => 'sponsor',
                     'posts_per_page' => -1,
                     'orderby' => 'title',
                     'order' => 'ASC',
-                ));
+                ]);
 
-                $sponsors_data = [];
-                if ($carousel_sponsors->have_posts()) {
-                    while ($carousel_sponsors->have_posts()) {
-                        $carousel_sponsors->the_post();
-                        // Only add if it has a logo
-                        if (has_post_thumbnail()) {
-                            $sponsors_data[] = [
-                                'url' => function_exists('get_field') ? get_field('sponsor_url') : '',
-                                'logo_id' => get_post_thumbnail_id(),
-                                'title' => get_the_title(),
-                            ];
+                    $sponsors_data = [];
+                    if ($carousel_sponsors->have_posts()) {
+                        while ($carousel_sponsors->have_posts()) {
+                            $carousel_sponsors->the_post();
+                            // Only add if it has a logo
+                            if (has_post_thumbnail()) {
+                                $sponsors_data[] = [
+                                    'url' => function_exists('get_field') ? get_field('sponsor_url') : '',
+                                    'logo_id' => get_post_thumbnail_id(),
+                                    'title' => get_the_title(),
+                                ];
+                            }
                         }
+                        wp_reset_postdata();
                     }
-                    wp_reset_postdata();
-                }
 
-                // If no sponsors, show HSLU fallback (no scrolling)
-                if (empty($sponsors_data)) {
-                    ?>
+                    // If no sponsors, show HSLU fallback (no scrolling)
+                    if (empty($sponsors_data)) {
+                        ?>
                     <a href="https://hslu.ch" target="_blank" rel="noopener noreferrer"
                         class="shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/HSLU_2022_logo.svg"
                             alt="HSLU Logo" class="h-8 w-auto">
                     </a>
                     <?php
-                } elseif (count($sponsors_data) === 1) {
-                    // If only one sponsor, show it statically (no scrolling)
-                    $sponsor = $sponsors_data[0];
-                    ?>
+                    } elseif (count($sponsors_data) === 1) {
+                        // If only one sponsor, show it statically (no scrolling)
+                        $sponsor = $sponsors_data[0];
+                        ?>
                     <a href="<?php echo esc_url($sponsor['url']); ?>" target="_blank" rel="noopener noreferrer"
                         class="shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                         title="<?php echo esc_attr($sponsor['title']); ?>">
-                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, array('class' => 'h-8 w-auto object-contain')); ?>
+                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, ['class' => 'h-8 w-auto object-contain']); ?>
                     </a>
                     <?php
-                } else {
-                    // If multiple sponsors, show scrolling carousel with greyscale effect
-                    ?>
+                    } else {
+                        // If multiple sponsors, show scrolling carousel with greyscale effect
+                        ?>
                     <div class="w-full max-w-sm overflow-hidden relative pause-on-hover mask-gradient">
                         <div class="flex animate-scroll gap-8 items-center">
                             <?php
-                            // If few sponsors, duplicate them enough times to fill width and scroll smoothly
-                            // For simplicity, we just duplicate the set twice to ensure the loop works
-                            $loop_count = count($sponsors_data) < 5 ? 4 : 2;
+                                // If few sponsors, duplicate them enough times to fill width and scroll smoothly
+                                // For simplicity, we just duplicate the set twice to ensure the loop works
+                                $loop_count = count($sponsors_data) < 5 ? 4 : 2;
 
-                            for ($i = 0; $i < $loop_count; $i++) {
-                                foreach ($sponsors_data as $sponsor) {
-                                    ?>
+                        for ($i = 0; $i < $loop_count; $i++) {
+                            foreach ($sponsors_data as $sponsor) {
+                                ?>
                                     <a href="<?php echo esc_url($sponsor['url']); ?>" target="_blank" rel="noopener noreferrer"
                                         class="shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                                         title="<?php echo esc_attr($sponsor['title']); ?>">
-                                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, array('class' => 'h-8 w-auto object-contain')); ?>
+                                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, ['class' => 'h-8 w-auto object-contain']); ?>
                                     </a>
                                     <?php
-                                }
                             }
-                            ?>
+                        }
+                        ?>
                         </div>
                     </div>
                     <?php
-                }
-                ?>
+                    }
+                    ?>
             </div>
         </div>
     </div>
