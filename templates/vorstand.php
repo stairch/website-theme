@@ -37,9 +37,8 @@ get_header();
         $members = new WP_Query([
             'post_type' => 'stair_member',
             'posts_per_page' => -1,
-            'orderby' => 'meta_value_num',
+            'orderby' => ['meta_value_num' => 'ASC', 'title' => 'ASC'],
             'meta_key' => '_stair_member_order',
-            'order' => 'ASC',
         ]);
 ?>
 
