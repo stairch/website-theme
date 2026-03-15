@@ -31,13 +31,13 @@ get_header();
 
         <!-- Members Grid -->
         <?php
-        $former_members = new WP_Query([
+        $former_members = new WP_Query(array(
             'post_type' => 'stair_former_member',
             'posts_per_page' => -1,
             'orderby' => 'title',
             'order' => 'ASC',
-        ]);
-?>
+        ));
+        ?>
 
         <?php if ($former_members->have_posts()): ?>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

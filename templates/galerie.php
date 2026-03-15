@@ -1,10 +1,10 @@
 <?php
 /**
  * Template Name: Galerie
- *
+ * 
  * Gallery page for event photos.
  * Future implementation: Display posts/galleries per event with images.
- *
+ * 
  * @package STAIR
  */
 
@@ -31,19 +31,19 @@ get_header();
         </div>
 
         <?php
-        $args = [
+        $args = array(
             'category_name' => 'galerie',
             'posts_per_page' => 12,
-        ];
-$gallery_query = new WP_Query($args);
+        );
+        $gallery_query = new WP_Query($args);
 
-if ($gallery_query->have_posts()): ?>
+        if ($gallery_query->have_posts()): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <?php while ($gallery_query->have_posts()):
                     $gallery_query->the_post();
                     // extract images from content
                     $content = get_the_content();
-                    $preview_images = [];
+                    $preview_images = array();
 
                     // match image URLs from wp:image blocks or standard img tags
                     if (preg_match_all('/<img[^>]+src="([^">]+)"/', $content, $matches)) {
@@ -92,24 +92,24 @@ if ($gallery_query->have_posts()): ?>
 
             <div class="mt-12 flex justify-center flex-wrap gap-2">
                 <?php
-                $links = paginate_links([
+                $links = paginate_links(array(
                     'total' => $gallery_query->max_num_pages,
                     'prev_text' => '<i data-lucide="chevron-left" class="w-5 h-5"></i>',
                     'next_text' => '<i data-lucide="chevron-right" class="w-5 h-5"></i>',
                     'type' => 'array',
-                ]);
+                ));
 
-    if ($links) {
-        foreach ($links as $link) {
-            if (strpos($link, 'current') !== false) {
-                $link = str_replace('page-numbers', 'px-4 py-2 bg-primary text-white border border-primary rounded-lg flex items-center justify-center min-w-[40px] shadow-sm', $link);
-            } else {
-                $link = str_replace('page-numbers', 'px-4 py-2 bg-white dark:bg-dark-surface text-text-light dark:text-dark-text border border-gray-200 dark:border-dark-border rounded-lg hover:bg-gray-50 dark:hover:bg-dark-border/50 hover:text-primary dark:hover:text-primary transition-all duration-200 flex items-center justify-center min-w-[40px] shadow-sm', $link);
-            }
-            echo $link;
-        }
-    }
-?>
+                if ($links) {
+                    foreach ($links as $link) {
+                        if (strpos($link, 'current') !== false) {
+                            $link = str_replace('page-numbers', 'px-4 py-2 bg-primary text-white border border-primary rounded-lg flex items-center justify-center min-w-[40px] shadow-sm', $link);
+                        } else {
+                            $link = str_replace('page-numbers', 'px-4 py-2 bg-white dark:bg-dark-surface text-text-light dark:text-dark-text border border-gray-200 dark:border-dark-border rounded-lg hover:bg-gray-50 dark:hover:bg-dark-border/50 hover:text-primary dark:hover:text-primary transition-all duration-200 flex items-center justify-center min-w-[40px] shadow-sm', $link);
+                        }
+                        echo $link;
+                    }
+                }
+                ?>
             </div>
 
             <?php wp_reset_postdata(); ?>

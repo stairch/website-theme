@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: 404 Page
- *
+ * 
  * Displays a custom 404 page.
- *
+ * 
  * @package STAIR
  */
 

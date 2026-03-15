@@ -1,6 +1,4 @@
 <?php
-
-declare(strict_types=1);
 /**
  * TGM Plugin Activation Configuration
  *
@@ -12,32 +10,31 @@ declare(strict_types=1);
 /**
  * Register the required plugins for this theme.
  */
-function stair_register_required_plugins()
-{
-    $plugins = [
-        [
+function stair_register_required_plugins() {
+    $plugins = array(
+        array(
             'name'     => 'The Events Calendar',
             'slug'     => 'the-events-calendar',
             'required' => true,
-        ],
-        [
+        ),
+        array(
             'name'     => 'Contact Form 7',
             'slug'     => 'contact-form-7',
             'required' => true,
-        ],
-        [
+        ),
+        array(
             'name'     => 'Advanced Custom Fields',
             'slug'     => 'advanced-custom-fields',
             'required' => true,
-        ],
-        [
+        ),
+        array(
             'name'     => 'FluentSMTP',
             'slug'     => 'fluent-smtp',
             'required' => true,
-        ],
-    ];
+        ),
+    );
 
-    $config = [
+    $config = array(
         'id'           => 'stair',
         'default_path' => '',
         'menu'         => 'tgmpa-install-plugins',
@@ -48,12 +45,12 @@ function stair_register_required_plugins()
         'dismiss_msg'  => '',
         'is_automatic' => false,
         'message'      => '',
-        'strings'      => [
-            'page_title'                      => __('Install Required Plugins', 'stair'),
-            'menu_title'                      => __('Install Plugins', 'stair'),
-            'installing'                      => __('Installing Plugin: %s', 'stair'),
-            'updating'                        => __('Updating Plugin: %s', 'stair'),
-            'oops'                            => __('Something went wrong with the plugin API.', 'stair'),
+        'strings'      => array(
+            'page_title'                      => __( 'Install Required Plugins', 'stair' ),
+            'menu_title'                      => __( 'Install Plugins', 'stair' ),
+            'installing'                      => __( 'Installing Plugin: %s', 'stair' ),
+            'updating'                        => __( 'Updating Plugin: %s', 'stair' ),
+            'oops'                            => __( 'Something went wrong with the plugin API.', 'stair' ),
             'notice_can_install_required'     => _n_noop(
                 'This theme requires the following plugin: %1$s.',
                 'This theme requires the following plugins: %1$s.',
@@ -99,19 +96,19 @@ function stair_register_required_plugins()
                 'Begin activating plugins',
                 'stair'
             ),
-            'return'                          => __('Return to Required Plugins Installer', 'stair'),
-            'plugin_activated'                => __('Plugin activated successfully.', 'stair'),
-            'activated_successfully'          => __('The following plugin was activated successfully:', 'stair'),
-            'plugin_already_active'           => __('No action taken. Plugin %1$s was already active.', 'stair'),
-            'plugin_needs_higher_version'     => __('Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'stair'),
-            'complete'                        => __('All plugins installed and activated successfully. %1$s', 'stair'),
-            'dismiss'                         => __('Dismiss this notice', 'stair'),
-            'notice_cannot_install_activate'  => __('There are one or more required or recommended plugins to install, update or activate.', 'stair'),
-            'contact_admin'                   => __('Please contact the administrator of this site for help.', 'stair'),
+            'return'                          => __( 'Return to Required Plugins Installer', 'stair' ),
+            'plugin_activated'                => __( 'Plugin activated successfully.', 'stair' ),
+            'activated_successfully'          => __( 'The following plugin was activated successfully:', 'stair' ),
+            'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'stair' ),
+            'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'stair' ),
+            'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'stair' ),
+            'dismiss'                         => __( 'Dismiss this notice', 'stair' ),
+            'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'stair' ),
+            'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'stair' ),
             'nag_type'                        => '',
-        ],
-    ];
+        ),
+    );
 
-    tgmpa($plugins, $config);
+    tgmpa( $plugins, $config );
 }
-add_action('tgmpa_register', 'stair_register_required_plugins');
+add_action( 'tgmpa_register', 'stair_register_required_plugins' );

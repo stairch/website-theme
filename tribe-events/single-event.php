@@ -174,9 +174,9 @@ get_header();
                                     <div class="flex flex-col gap-3">
                                         <?php
                                         $phone = tribe_get_organizer_phone();
-                            $email = tribe_get_organizer_email();
-                            $website = tribe_get_organizer_website_link();
-                            ?>
+                                        $email = tribe_get_organizer_email();
+                                        $website = tribe_get_organizer_website_link();
+                                        ?>
                                         <?php if ($phone): ?>
                                             <div
                                                 class="flex items-center text-sm text-gray-600 dark:text-dark-text-muted font-medium">

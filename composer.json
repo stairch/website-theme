@@ -3,7 +3,7 @@
     "description": "STAIR WordPress Theme",
     "type": "wordpress-theme",
     "license": "GPL-2.0-or-later",
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.94"
+    "require": {
+        "tgmpa/tgm-plugin-activation": "^2.6"
     }
 }

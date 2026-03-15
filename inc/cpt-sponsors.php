@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 function stair_register_cpt_sponsor()
 {
 
-    $labels = [
+    $labels = array(
         'name' => 'Sponsors',
         'singular_name' => 'Sponsor',
         'menu_name' => 'Sponsors',
@@ -34,23 +34,23 @@ function stair_register_cpt_sponsor()
         'set_featured_image' => 'Set logo',
         'remove_featured_image' => 'Remove logo',
         'use_featured_image' => 'Use as logo',
-    ];
+    );
 
-    $args = [
+    $args = array(
         'labels' => $labels,
         'public' => false, // No single view needed
         'publicly_queryable' => true,  // But queryable for frontend lists
         'show_ui' => true,
         'show_in_menu' => true,
         'query_var' => true,
-        'rewrite' => ['slug' => 'sponsor'],
+        'rewrite' => array('slug' => 'sponsor'),
         'capability_type' => 'post',
         'has_archive' => false,
         'hierarchical' => false,
         'menu_position' => null,
         'menu_icon' => 'dashicons-awards',
-        'supports' => ['title', 'thumbnail'], // Disable editor
-    ];
+        'supports' => array('title', 'thumbnail'), // Disable editor
+    );
 
     register_post_type('sponsor', $args);
 }
@@ -66,30 +66,30 @@ function stair_register_sponsor_acf()
         return;
     }
 
-    acf_add_local_field_group([
+    acf_add_local_field_group(array(
         'key' => 'group_sponsor_details',
         'title' => 'Sponsor Details',
-        'fields' => [
-            [
+        'fields' => array(
+            array(
                 'key' => 'field_sponsor_url',
                 'label' => 'Website URL',
                 'name' => 'sponsor_url',
                 'type' => 'url',
                 'instructions' => 'Link to the sponsor website.',
                 'required' => 1,
-            ],
-            [
+            ),
+            array(
                 'key' => 'field_sponsor_tier',
                 'label' => 'Sponsor Tier',
                 'name' => 'sponsor_tier',
                 'type' => 'select',
                 'instructions' => 'Controls display size and location (e.g. footer relevance).',
                 'required' => 0,
-                'choices' => [
+                'choices' => array(
                     'main_partner' => 'Main Partner',
                     'event_sponsor' => 'Event Sponsor',
                     'supporter' => 'Supporter',
-                ],
+                ),
                 'default_value' => 'event_sponsor',
                 'allow_null' => 0,
                 'multiple' => 0,
@@ -97,45 +97,45 @@ function stair_register_sponsor_acf()
                 'return_format' => 'value',
                 'ajax' => 0,
                 'placeholder' => '',
-            ],
-        ],
-        'location' => [
-            [
-                [
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
                     'param' => 'post_type',
                     'operator' => '==',
                     'value' => 'sponsor',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
         'menu_order' => 0,
         'position' => 'normal',
         'style' => 'default',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
         'active' => true,
-    ]);
+    ));
 }
 add_action('acf/init', 'stair_register_sponsor_acf');
 
 /**
  * Register [sponsor_grid] Shortcode
- *
+ * 
  * Usage: [sponsor_grid limit="4" tier="main_partner"]
  */
 function stair_sponsor_grid_shortcode($atts)
 {
-    $atts = shortcode_atts([
+    $atts = shortcode_atts(array(
         'tier' => '', // Optional: 'main_partner', 'event_sponsor', 'supporter'
         'limit' => -1,
-    ], $atts, 'sponsor_grid');
+    ), $atts, 'sponsor_grid');
 
-    $args = [
+    $args = array(
         'post_type' => 'sponsor',
         'posts_per_page' => intval($atts['limit']),
         'orderby' => 'title',
         'order' => 'ASC',
-    ];
+    );
 
     if (!empty($atts['tier'])) {
         $args['meta_key'] = 'sponsor_tier';
@@ -161,11 +161,11 @@ function stair_sponsor_grid_shortcode($atts)
                     <?php if ($sponsor_url): ?>
                         <a href="<?php echo esc_url($sponsor_url); ?>" target="_blank" rel="noopener noreferrer"
                             class="block w-full h-full flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100">
-                            <?php the_post_thumbnail('medium', ['class' => 'max-h-20 w-auto object-contain']); ?>
+                            <?php the_post_thumbnail('medium', array('class' => 'max-h-20 w-auto object-contain')); ?>
                         </a>
                     <?php else: ?>
                         <div class="w-full h-full flex items-center justify-center opacity-80">
-                            <?php the_post_thumbnail('medium', ['class' => 'max-h-20 w-auto object-contain']); ?>
+                            <?php the_post_thumbnail('medium', array('class' => 'max-h-20 w-auto object-contain')); ?>
                         </div>
                     <?php endif; ?>
                 <?php else: ?>
@@ -182,7 +182,7 @@ function stair_sponsor_grid_shortcode($atts)
                 <?php endif; ?>
             </div>
         <?php endwhile;
-    wp_reset_postdata(); ?>
+        wp_reset_postdata(); ?>
     </div>
     <?php
     return ob_get_clean();

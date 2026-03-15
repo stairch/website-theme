@@ -1,7 +1,7 @@
 <?php
 /**
  * Custom Post Type: STAIR Former Members (Ahnengallerie)
- *
+ * 
  * Registers the stair_former_member CPT and associated meta boxes
  * for displaying previous board members.
  */
@@ -11,7 +11,7 @@
  */
 function stair_register_former_member_cpt()
 {
-    $labels = [
+    $labels = array(
         'name' => 'Former Members',
         'singular_name' => 'Former Member',
         'menu_name' => 'Former Members',
@@ -24,23 +24,23 @@ function stair_register_former_member_cpt()
         'not_found' => 'No former members found',
         'not_found_in_trash' => 'No former members found in trash',
         'all_items' => 'All Former Members',
-    ];
+    );
 
-    $args = [
+    $args = array(
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'query_var' => true,
-        'rewrite' => ['slug' => 'ahnengallerie'],
+        'rewrite' => array('slug' => 'ahnengallerie'),
         'capability_type' => 'post',
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => 6,
         'menu_icon' => 'dashicons-clock', // Distinct icon from current members
-        'supports' => ['title', 'thumbnail'], // Title = Name, Thumbnail = Photo
-    ];
+        'supports' => array('title', 'thumbnail'), // Title = Name, Thumbnail = Photo
+    );
 
     register_post_type('stair_former_member', $args);
 }
@@ -144,7 +144,7 @@ add_action('save_post_stair_former_member', 'stair_save_former_member_meta');
  */
 function stair_former_member_admin_columns($columns)
 {
-    $new_columns = [];
+    $new_columns = array();
     foreach ($columns as $key => $value) {
         $new_columns[$key] = $value;
         if ($key === 'title') {

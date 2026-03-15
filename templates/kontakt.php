@@ -1,18 +1,18 @@
 <?php
 /**
  * Template Name: Kontakt
- *
+ * 
  * Contact page template with Contact Form 7 integration.
  * Requires: Contact Form 7 plugin to be installed and active.
- *
+ * 
  * After installing CF7, create a form with these fields:
  * - Name (text, required)
  * - Email (email, required)
  * - Topic/Betreff (text, required)
  * - Message/Nachricht (textarea, required)
- *
+ * 
  * Then paste the CF7 shortcode in the page content.
- *
+ * 
  * @package STAIR
  */
 
@@ -26,7 +26,7 @@ get_header();
             <h1 class="text-4xl md:text-5xl font-bold text-text-dark dark:text-dark-text mb-4"><?php the_title(); ?></h1>
             <p class="text-lg text-text-light dark:text-dark-text-muted max-w-2xl mx-auto">
                 
-            <?php
+            <?php 
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();
@@ -38,7 +38,7 @@ get_header();
                         }
                     }
                 }
-?>
+                ?>
             </p>
         </div>
 
@@ -49,11 +49,11 @@ get_header();
                     <h2 class="text-2xl font-bold text-text-dark dark:text-dark-text mb-6">Schreib uns</h2>
 
                     <?php
-    // check if CF7 is active
-    if (shortcode_exists('contact-form-7')) {
-        echo do_shortcode('[contact-form-7 title="Kontakt"]');
-    } else {
-        ?>
+                    // check if CF7 is active
+                    if (shortcode_exists('contact-form-7')) {
+                        echo do_shortcode('[contact-form-7 title="Kontakt"]');
+                    } else {
+                        ?>
                         <div
                             class="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 text-center">
                             <i data-lucide="alert-triangle"
@@ -63,8 +63,8 @@ get_header();
                             </p>
                         </div>
                         <?php
-    }
-?>
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -78,10 +78,10 @@ get_header();
                         </div>
                         <div>
                             <h3 class="font-semibold text-text-dark dark:text-dark-text">E-Mail</h3>
-                            <?php
-        $contact_email = get_theme_mod('stair_contact_email', 'info@stair.ch');
-stair_email_link($contact_email, 'text-primary hover:underline');
-?>
+                            <?php 
+                            $contact_email = get_theme_mod('stair_contact_email', 'info@stair.ch');
+                            stair_email_link($contact_email, 'text-primary hover:underline'); 
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -92,46 +92,46 @@ stair_email_link($contact_email, 'text-primary hover:underline');
                     <div class="flex gap-3">
                         <?php
                         // get social links from individual ACF fields
-                        $social_links = [];
+                        $social_links = array();
+                        
+                        if (function_exists('get_field')) {
+                            for ($i = 1; $i <= 5; $i++) {
+                                $url = get_field('social_' . $i . '_url');
+                                $icon = get_field('social_' . $i . '_icon');
+                                
+                                // only add if url and icon are set
+                                if ($url && $icon) {
+                                    // derive platform name from URL for accessibility
+                                    $host = parse_url($url, PHP_URL_HOST);
+                                    $host = str_replace('www.', '', $host);
+                                    $platform = ucfirst(explode('.', $host)[0]);
 
-if (function_exists('get_field')) {
-    for ($i = 1; $i <= 5; $i++) {
-        $url = get_field('social_' . $i . '_url');
-        $icon = get_field('social_' . $i . '_icon');
-
-        // only add if url and icon are set
-        if ($url && $icon) {
-            // derive platform name from URL for accessibility
-            $host = parse_url($url, PHP_URL_HOST);
-            $host = str_replace('www.', '', $host);
-            $platform = ucfirst(explode('.', $host)[0]);
-
-            $social_links[] = [
-                'platform' => $platform,
-                'url' => $url,
-                'icon' => $icon,
-            ];
-        }
-    }
-}
-
-// fallback defaults if no social links configured
-if (empty($social_links)) {
-    $social_links = [
-        ['platform' => 'LinkedIn', 'url' => 'https://www.linkedin.com/company/stairhslu/', 'icon' => 'linkedin'],
-        ['platform' => 'Instagram', 'url' => 'https://www.instagram.com/stairhslu/', 'icon' => 'instagram'],
-        ['platform' => 'Facebook', 'url' => 'https://www.facebook.com/stairhslu/', 'icon' => 'facebook'],
-    ];
-}
-
-foreach ($social_links as $social) :
-    $platform = esc_attr($social['platform']);
-    $url = esc_url($social['url']);
-    $icon = trim($social['icon']);
-
-    $is_svg = str_starts_with($icon, '<svg');
-    $is_url = filter_var($icon, FILTER_VALIDATE_URL) || str_starts_with($icon, '/');
-    ?>
+                                    $social_links[] = array(
+                                        'platform' => $platform,
+                                        'url' => $url,
+                                        'icon' => $icon,
+                                    );
+                                }
+                            }
+                        }
+                        
+                        // fallback defaults if no social links configured
+                        if (empty($social_links)) {
+                            $social_links = array(
+                                array('platform' => 'LinkedIn', 'url' => 'https://www.linkedin.com/company/stairhslu/', 'icon' => 'linkedin'),
+                                array('platform' => 'Instagram', 'url' => 'https://www.instagram.com/stairhslu/', 'icon' => 'instagram'),
+                                array('platform' => 'Facebook', 'url' => 'https://www.facebook.com/stairhslu/', 'icon' => 'facebook'),
+                            );
+                        }
+                        
+                        foreach ($social_links as $social) :
+                            $platform = esc_attr($social['platform']);
+                            $url = esc_url($social['url']);
+                            $icon = trim($social['icon']);
+                            
+                            $is_svg = str_starts_with($icon, '<svg');
+                            $is_url = filter_var($icon, FILTER_VALIDATE_URL) || str_starts_with($icon, '/');
+                        ?>
                         <a href="<?php echo $url; ?>" target="_blank" rel="noopener noreferrer"
                             title="<?php echo $platform; ?>"
                             class="w-10 h-10 bg-bg-light dark:bg-dark-bg rounded-full flex items-center justify-center text-text-light dark:text-dark-text-muted hover:bg-primary hover:text-white transition-colors">
@@ -159,11 +159,11 @@ foreach ($social_links as $social) :
                         <div>
                             <h3 class="font-semibold text-text-dark dark:text-dark-text mb-1">Standort</h3>
                             <?php
-        $loc_org = function_exists('get_field') && get_field('location_org') ? get_field('location_org') : 'STAIR';
-$loc_addr1 = function_exists('get_field') && get_field('location_address1') ? get_field('location_address1') : 'C/O Hochschule Luzern Informatik';
-$loc_addr2 = function_exists('get_field') && get_field('location_address2') ? get_field('location_address2') : 'Suurstoffi 1';
-$loc_city = function_exists('get_field') && get_field('location_city') ? get_field('location_city') : '6343 Rotkreuz';
-?>
+                            $loc_org = function_exists('get_field') && get_field('location_org') ? get_field('location_org') : 'STAIR';
+                            $loc_addr1 = function_exists('get_field') && get_field('location_address1') ? get_field('location_address1') : 'C/O Hochschule Luzern Informatik';
+                            $loc_addr2 = function_exists('get_field') && get_field('location_address2') ? get_field('location_address2') : 'Suurstoffi 1';
+                            $loc_city = function_exists('get_field') && get_field('location_city') ? get_field('location_city') : '6343 Rotkreuz';
+                            ?>
                             <p class="text-text-light dark:text-dark-text-muted text-sm">
                                 <?php echo esc_html($loc_org); ?><br>
                                 <?php echo esc_html($loc_addr1); ?><br>

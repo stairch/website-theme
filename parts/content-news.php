@@ -16,12 +16,12 @@
 
                 <?php if (function_exists('tribe_get_events')): ?>
                     <?php
-                    $upcoming_events = tribe_get_events([
+                    $upcoming_events = tribe_get_events(array(
                         'posts_per_page' => 3,
                         'start_date' => 'now',
                         'orderby' => 'event_date',
                         'order' => 'ASC',
-                    ]);
+                    ));
                     ?>
 
                     <?php if (!empty($upcoming_events)): ?>
@@ -88,10 +88,10 @@
                 </h3>
 
                 <?php
-                $args = [
+                $args = array(
                     'posts_per_page' => 3,
                     'post_status' => 'publish',
-                ];
+                );
                 $query = new WP_Query($args);
                 ?>
 
@@ -106,19 +106,19 @@
                                         class="w-20 h-20 shrink-0 bg-linear-to-br from-primary to-primary-light rounded-lg overflow-hidden">
                                         <?php
                                         $has_image = false;
-                            if (has_post_thumbnail()) {
-                                the_post_thumbnail('thumbnail', ['class' => 'w-full h-full object-cover']);
-                                $has_image = true;
-                            } else {
-                                // try to find first image in content
-                                $content = get_the_content();
-                                if (preg_match('/<img[^>]+src="([^">]+)"/', $content, $matches)) {
-                                    echo '<img src="' . esc_url($matches[1]) . '" class="w-full h-full object-cover" alt="' . get_the_title() . '">';
-                                    $has_image = true;
-                                }
-                            }
+                                        if (has_post_thumbnail()) {
+                                            the_post_thumbnail('thumbnail', array('class' => 'w-full h-full object-cover'));
+                                            $has_image = true;
+                                        } else {
+                                            // try to find first image in content
+                                            $content = get_the_content();
+                                            if (preg_match('/<img[^>]+src="([^">]+)"/', $content, $matches)) {
+                                                echo '<img src="' . esc_url($matches[1]) . '" class="w-full h-full object-cover" alt="' . get_the_title() . '">';
+                                                $has_image = true;
+                                            }
+                                        }
 
-                            if (!$has_image): ?>
+                                        if (!$has_image): ?>
                                             <div class="w-full h-full flex items-center justify-center text-3xl">📰</div>
                                         <?php endif; ?>
                                     </div>
@@ -142,7 +142,7 @@
 
                     <?php
                     $news_link = home_url('/news');
-                ?>
+                    ?>
                     <a href="<?php echo esc_url($news_link); ?>"
                         class="inline-flex items-center gap-2 mt-6 text-primary font-semibold hover:gap-3 transition-all">
                         Alle News anzeigen
