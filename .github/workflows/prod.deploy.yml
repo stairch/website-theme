@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "REMOTE_USER=${{ secrets.REMOTE_USER }}" >> .env
           echo "REMOTE_HOST=${{ secrets.REMOTE_HOST }}" >> .env
-          echo "REMOTE_PATH=~/public_html/wp-content/themes/stair-themev${VERSION}" >> .env
+          echo "REMOTE_PATH=~/public_html/wp-content/themes/stair-theme-${VERSION}" >> .env
 
       - name: Run deployment
         run: |
