@@ -1,14 +1,10 @@
 name: Deploy
 
-# TODO
-#on:
-#  # only on tags which follow semantic versioning
-#  push:
-#    tags:
-#      - "v[0-9]+.[0-9]+.[0-9]+"
-
 on:
-  workflow_dispatch:
+  # only on tags which follow semantic versioning
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   deploy:
