@@ -37,10 +37,12 @@ The theme will prompt you to install these plugins on activation:
 
 ### Development Setup
 
+First, create a shared directory into which this repo and [stairch/website-docker](https://github.com/stairch/website-docker) will be cloned
+
 ```bash
 # Clone the repository
-git clone https://github.com/jackra1n/WIPRO.git
-cd WIPRO/stair-theme
+git clone https://github.com/stairch/website-theme.git
+cd website-theme
 
 # Install all dependencies (bun + composer)
 bun run setup
@@ -55,7 +57,7 @@ bun run dev
 ### Production
 
 1. Run `bun run setup` and `bun run build` to generate the compiled CSS
-2. Copy the `stair-theme` folder to `wp-content/themes/`
+2. Copy the `website-theme` folder to `wp-content/themes/` and rename it to `stair-theme`
 3. Activate the theme in WordPress Admin → Appearance → Themes
 4. Install the required plugins when prompted
 
