@@ -17,7 +17,6 @@ echo "Starting deployment to ${REMOTE_USER}@${REMOTE_HOST}..."
 rsync -avzP \
     --exclude='.git/' \
     --exclude='node_modules/' \
-    --exclude='vendor/' \
     --exclude='.DS_Store' \
     --exclude='.env*' \
     --exclude='*.log' \
