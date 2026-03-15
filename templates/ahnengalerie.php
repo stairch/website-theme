@@ -31,20 +31,57 @@ get_header();
 
         <!-- Members Grid -->
         <?php
-        $former_members = new WP_Query(array(
-            'post_type' => 'stair_former_member',
-            'posts_per_page' => -1,
-            'orderby' => 'title',
-            'order' => 'ASC',
-        ));
+        $former_members = new WP_Query([
+                'post_type' => 'stair_former_member',
+                'posts_per_page' => -1,
+        ]);
+
+        function semester_value($sem)
+        {
+            // 'HS' or 'FS'
+            $type = substr($sem, 0, 2);
+            $year = (int) substr($sem, 2);
+
+            // Convert semester strings like "FS23" or "HS23" into a comparable numeric value.
+            // Each year has two semesters: FS and HS.
+            // By mapping them onto a linear timeline (year * 2 + semester offset), we get values like FS23=46, HS23=47, FS24=48, which makes chronological sorting easy
+            return $year * 2 + ($type === 'HS' ? 1 : 0);
+        }
+
+        if (!empty($former_members->posts)) {
+            usort($former_members->posts, function ($a, $b) {
+                $a_time = get_field('_stair_former_member_active_time', $a->ID);
+                $b_time = get_field('_stair_former_member_active_time', $b->ID);
+                [$a_start, $a_end] = explode('-', $a_time);
+                [$b_start, $b_end] = explode('-', $b_time);
+                $a_end_val = semester_value($a_end);
+                $b_end_val = semester_value($b_end);
+
+                if ($a_end_val !== $b_end_val) {
+                    // latest exits first
+                    return $b_end_val <=> $a_end_val;
+                }
+
+                $a_start_val = semester_value($a_start);
+                $b_start_val = semester_value($b_start);
+
+                if ($a_start_val !== $b_start_val) {
+                    // longest duration first
+                    return $a_start_val <=> $b_start_val;
+                }
+
+                // finally alphabetically
+                return strcmp($a->post_title, $b->post_title);
+            });
+        }
         ?>
 
-        <?php if ($former_members->have_posts()): ?>
+        <?php if (!empty($former_members->posts)): ?>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <?php while ($former_members->have_posts()):
-                    $former_members->the_post(); ?>
+                <?php foreach ($former_members->posts as $post):
+                    setup_postdata($post); ?>
                     <?php get_template_part('parts/content-member-card', null, ['type' => 'former']); ?>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </div>
             <?php wp_reset_postdata(); ?>
         <?php else: ?>
