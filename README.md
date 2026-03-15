@@ -62,7 +62,7 @@ it to the production server.
 
 If you somehow need to deploy manually (e.g. fallback to an older version), follow these steps:
 
-1. Copy `.env.example` to `.env` and change the values of the variables respectively. Make sure `REMOTE_PATH` is set to `~/public_html/wp-content/themes/stair-theme`
+1. Copy `.env.example` to `.env` and change the values of the variables respectively. Make sure `REMOTE_PATH` is set to `~/public_html/wp-content/themes/stair-theme-<VERSION>`
 
 1. Run `bun run setup` and `bun run build` to generate the compiled CSS
 2. Run the `deploy.sh` script

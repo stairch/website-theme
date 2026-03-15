@@ -36,11 +36,15 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Read version
+        id: version
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
       - name: Create .env
         run: |
           echo "REMOTE_USER=${{ secrets.REMOTE_USER }}" >> .env
           echo "REMOTE_HOST=${{ secrets.REMOTE_HOST }}" >> .env
-          echo "REMOTE_PATH=~/public_html/wp-content/themes/stair-theme" >> .env
+          echo "REMOTE_PATH=~/public_html/wp-content/themes/stair-themev${VERSION}" >> .env
 
       - name: Run deployment
         run: |

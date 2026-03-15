@@ -1,11 +1,12 @@
 {
   "name": "stair-theme",
+  "version": "1.1.0",
   "module": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "setup": "bun install && composer install",
-    "build:css": "bunx @tailwindcss/cli -i ./input.css -o ./style.css",
+    "build:css": "node scripts/inject-version.js && bunx @tailwindcss/cli -i ./input.css -o ./style.css && node scripts/reset-version.js",
     "watch:css": "bunx @tailwindcss/cli -i ./input.css -o ./style.css --watch",
     "build": "bun run build:css",
     "dev": "bun run watch:css"
