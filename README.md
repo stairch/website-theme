@@ -56,8 +56,16 @@ bun run dev
 
 ### Production
 
+To deploy a new version of the theme, you need to create a tag following Semantic Versioning (e.g. `v1.1.0`).
+After that the [production deployment workflow](./.github/workflows/prod.deploy.yml) starts and automatically deploys
+it to the production server.
+
+If you somehow need to deploy manually (e.g. fallback to an older version), follow these steps:
+
+1. Copy `.env.example` to `.env` and change the values of the variables respectively. Make sure `REMOTE_PATH` is set to `~/public_html/wp-content/themes/stair-theme`
+
 1. Run `bun run setup` and `bun run build` to generate the compiled CSS
-2. Copy the `website-theme` folder to `wp-content/themes/` and rename it to `stair-theme`
+2. Run the `deploy.sh` script
 3. Activate the theme in WordPress Admin → Appearance → Themes
 4. Install the required plugins when prompted
 
