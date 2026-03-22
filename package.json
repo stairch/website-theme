@@ -9,7 +9,10 @@
     "build:css": "node scripts/inject-version.js && bunx @tailwindcss/cli -i ./input.css -o ./style.css && node scripts/reset-version.js",
     "watch:css": "bunx @tailwindcss/cli -i ./input.css -o ./style.css --watch",
     "build": "bun run build:css",
-    "dev": "bun run watch:css"
+    "dev": "bun run watch:css",
+    "lint": "vendor/bin/phpcs . --standard=phpcs.xml",
+    "format": "vendor/bin/php-cs-fixer fix . --config=.php-cs-fixer.dist.php --dry-run",
+    "format:fix": "vendor/bin/php-cs-fixer fix . --config=.php-cs-fixer.dist.php"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",

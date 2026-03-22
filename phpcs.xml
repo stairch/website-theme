@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<ruleset name="STAIR Theme WordPress Coding Standards">
+    <description>WordPress Coding Standards for STAIR Theme</description>
+
+    <exclude-pattern>/vendor/</exclude-pattern>
+    <exclude-pattern>/node_modules/</exclude-pattern>
+    <exclude-pattern>/.git/</exclude-pattern>
+    <exclude-pattern>/screenshot.png</exclude-pattern>
+    <exclude-pattern>/style.css</exclude-pattern>
+
+    <arg name="ignore" value="vendor/*,node_modules/*"/>
+    <arg name="extensions" value="php"/>
+    <arg value="p"/>
+    <arg name="bootstrap" value=""/>
+
+    <rule ref="WordPress.Security" />
+    <rule ref="PHPCompatibilityWP" />
+
+    <config name="testVersion" value="8.0-" />
+</ruleset>
