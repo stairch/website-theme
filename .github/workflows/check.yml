@@ -15,40 +15,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          php-version: "8.2"
-          tools: composer
+          bun-version: latest
 
-      - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest
+      - name: Install dependencies
+        run: bun run setup
+
+      - name: Build project
+        run: bun run build
 
       - name: Run Lint
         run: bun run lint
 
   format:
     name: PHP Formatter
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
-          tools: composer
-
-      - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest
-
-      - name: Run Formatter
-        run: bun run format
-
-  build:
-    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -63,5 +45,9 @@ jobs:
       - name: Install dependencies
         run: bun run setup
 
-      - name: Build
+      - name: Build project
         run: bun run build
+
+      - name: Run Formatter
+        run: bun run format
+
