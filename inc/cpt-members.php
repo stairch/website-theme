@@ -106,8 +106,12 @@ function stair_member_details_callback($post) {
  */
 function stair_save_member_meta($post_id) {
     // Security checks
-    if (!isset($_POST['stair_member_nonce']) ||
-        !wp_verify_nonce($_POST['stair_member_nonce'], 'stair_member_details_nonce')) {
+    if (!isset($_POST['stair_member_nonce'])) {
+        return;
+    }
+
+    $nonce = sanitize_text_field(wp_unslash($_POST['stair_member_nonce']));
+    if (!wp_verify_nonce($nonce, 'stair_member_details_nonce')) {
         return;
     }
 
@@ -121,15 +125,15 @@ function stair_save_member_meta($post_id) {
 
     // Save fields
     if (isset($_POST['stair_member_position'])) {
-        update_post_meta($post_id, '_stair_member_position', sanitize_text_field($_POST['stair_member_position']));
+        update_post_meta($post_id, '_stair_member_position', sanitize_text_field(wp_unslash($_POST['stair_member_position'])));
     }
 
     if (isset($_POST['stair_member_study_status'])) {
-        update_post_meta($post_id, '_stair_member_study_status', sanitize_text_field($_POST['stair_member_study_status']));
+        update_post_meta($post_id, '_stair_member_study_status', sanitize_text_field(wp_unslash($_POST['stair_member_study_status'])));
     }
 
     if (isset($_POST['stair_member_order'])) {
-        update_post_meta($post_id, '_stair_member_order', absint($_POST['stair_member_order']));
+        update_post_meta($post_id, '_stair_member_order', absint(wp_unslash($_POST['stair_member_order'])));
     }
 }
 add_action('save_post_stair_member', 'stair_save_member_meta');

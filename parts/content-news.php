@@ -39,9 +39,9 @@
                                     <div class="flex gap-4">
                                         <div class="bg-primary text-white rounded-lg px-3 py-2 text-center shrink-0">
                                             <span
-                                                class="block text-xl font-bold leading-tight"><?php echo tribe_get_start_date($event_id, false, 'd'); ?></span>
+                                                class="block text-xl font-bold leading-tight"><?php echo esc_html(tribe_get_start_date($event_id, false, 'd')); ?></span>
                                             <span
-                                                class="block text-xs uppercase"><?php echo tribe_get_start_date($event_id, false, 'M'); ?></span>
+                                                class="block text-xs uppercase"><?php echo esc_html(tribe_get_start_date($event_id, false, 'M')); ?></span>
                                         </div>
                                         <div class="grow min-w-0">
                                             <h4 class="font-semibold text-text-dark dark:text-dark-text truncate">

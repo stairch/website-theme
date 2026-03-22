@@ -132,15 +132,15 @@ get_header();
                             $is_svg = str_starts_with($icon, '<svg');
                             $is_url = filter_var($icon, FILTER_VALIDATE_URL) || str_starts_with($icon, '/');
                         ?>
-                        <a href="<?php echo $url; ?>" target="_blank" rel="noopener noreferrer"
-                            title="<?php echo $platform; ?>"
+                        <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer"
+                            title="<?php echo esc_attr($platform); ?>"
                             class="w-10 h-10 bg-bg-light dark:bg-dark-bg rounded-full flex items-center justify-center text-text-light dark:text-dark-text-muted hover:bg-primary hover:text-white transition-colors">
                             <?php if ($is_svg) : ?>
                                 <div class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current">
                                     <?php echo $icon; ?>
                                 </div>
                             <?php elseif ($is_url) : ?>
-                                <img src="<?php echo esc_url($icon); ?>" alt="<?php echo $platform; ?>" class="w-5 h-5">
+                                <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($platform); ?>" class="w-5 h-5">
                             <?php else : ?>
                                 <i data-lucide="<?php echo esc_attr($icon); ?>" class="w-5 h-5"></i>
                             <?php endif; ?>

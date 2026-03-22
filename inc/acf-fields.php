@@ -207,7 +207,7 @@ function stair_acf_notice() {
         <div class="notice notice-info">
             <p>
                 <strong>Tipp:</strong> Installiere das Plugin
-                <a href="<?php echo admin_url('plugin-install.php?s=Advanced+Custom+Fields&tab=search&type=term'); ?>">Advanced Custom Fields</a>
+                <a href="<?php echo esc_url(admin_url('plugin-install.php?s=Advanced+Custom+Fields&tab=search&type=term')); ?>">Advanced Custom Fields</a>
                 für einfachere Bearbeitung der Docker Bar Inhalte (Öffnungszeiten, Getränkekarte, etc.).
             </p>
         </div>

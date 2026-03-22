@@ -23,6 +23,18 @@ function stair_generate_dummy_content() {
         return;
     }
 
+    $generate_stair_dummy = sanitize_text_field(wp_unslash($_GET['generate_stair_dummy']));
+    if ('1' !== $generate_stair_dummy) {
+        return;
+    }
+
+    if (
+        !isset($_GET['_stair_dummy_nonce']) ||
+        !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_stair_dummy_nonce'])), 'stair_generate_dummy')
+    ) {
+        return;
+    }
+
     $num_posts = 10;
     $num_events = 10;
 
@@ -53,7 +65,7 @@ function stair_generate_dummy_content() {
         $post_id = wp_insert_post($post_args);
 
         if ($post_id) {
-            echo "Created post $post_id dated $post_date <br>";
+            echo '<p>' . esc_html(sprintf('Created post %d dated %s', (int) $post_id, $post_date)) . '</p>';
         }
     }
 
@@ -112,9 +124,9 @@ function stair_generate_dummy_content() {
             $event_id = $create_event_func($event_title, $start_datetime, $end_datetime);
 
             if ($event_id) {
-                echo "Created past event $event_id (Date: " . date('Y-m-d', $timestamp) . ")<br>";
+                echo '<p>' . esc_html(sprintf('Created past event %d (Date: %s)', (int) $event_id, date('Y-m-d', $timestamp))) . '</p>';
             } else {
-                echo "<span style='color:red;'>Failed to create past event #$i</span><br>";
+                echo '<p>' . esc_html(sprintf('Failed to create past event #%d', (int) $i)) . '</p>';
             }
         }
 
@@ -133,9 +145,9 @@ function stair_generate_dummy_content() {
             $event_id = $create_event_func($event_title, $start_datetime, $end_datetime);
 
             if ($event_id) {
-                echo "Created future event $event_id (Date: " . date('Y-m-d', $timestamp) . ")<br>";
+                echo '<p>' . esc_html(sprintf('Created future event %d (Date: %s)', (int) $event_id, date('Y-m-d', $timestamp))) . '</p>';
             } else {
-                echo "<span style='color:red;'>Failed to create future event #$i</span><br>";
+                echo '<p>' . esc_html(sprintf('Failed to create future event #%d', (int) $i)) . '</p>';
             }
         }
 
@@ -157,7 +169,7 @@ function stair_generate_dummy_content() {
             update_post_meta($member_id, '_stair_member_position', $positions[$i - 1]);
             update_post_meta($member_id, '_stair_member_study_status', 'seit 202' . $i . ' Informatik');
             update_post_meta($member_id, '_stair_member_order', $i);
-            echo "Created member $member_id as " . $positions[$i - 1] . "<br>";
+            echo '<p>' . esc_html(sprintf('Created member %d as %s', (int) $member_id, $positions[$i - 1])) . '</p>';
         }
     }
 
@@ -173,12 +185,12 @@ function stair_generate_dummy_content() {
         if ($sponsor_id) {
             update_post_meta($sponsor_id, 'sponsor_url', 'https://example.com/sponsor' . $i);
             update_post_meta($sponsor_id, 'sponsor_tier', $tiers[$i - 1]);
-            echo "Created sponsor $sponsor_id with tier " . $tiers[$i - 1] . "<br>";
+            echo '<p>' . esc_html(sprintf('Created sponsor %d with tier %s', (int) $sponsor_id, $tiers[$i - 1])) . '</p>';
         }
     }
 
     echo '<h3>Done!</h3>';
-    echo '<p><a href="' . admin_url() . '">Go to Dashboard</a></p>';
+    echo '<p><a href="' . esc_url(admin_url()) . '">Go to Dashboard</a></p>';
     exit;
 }
 add_action('admin_init', 'stair_generate_dummy_content');

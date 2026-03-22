@@ -96,7 +96,7 @@ get_header();
                                     </div>
                                     
                                     <p class="text-text-light dark:text-dark-text-muted text-sm line-clamp-2">
-                                        <?php echo wp_trim_words($event->post_content, 20); ?>
+                                        <?php echo esc_html(wp_trim_words(wp_strip_all_tags($event->post_content), 20)); ?>
                                     </p>
                                 </div>
                             </article>
@@ -118,12 +118,12 @@ get_header();
                                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                                     <?php if ($i == $paged): ?>
                                         <span class="px-4 py-2 bg-primary text-white rounded-lg font-semibold">
-                                            <?php echo $i; ?>
+                                            <?php echo esc_html((string) $i); ?>
                                         </span>
                                     <?php else: ?>
                                         <a href="<?php echo esc_url(get_pagenum_link($i)); ?>"
                                             class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-text-dark dark:text-dark-text hover:bg-gray-50 dark:hover:bg-dark-bg transition-colors">
-                                            <?php echo $i; ?>
+                                            <?php echo esc_html((string) $i); ?>
                                         </a>
                                     <?php endif; ?>
                                 <?php endfor; ?>

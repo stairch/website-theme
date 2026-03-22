@@ -42,20 +42,24 @@ add_filter('wpcf7_autop_or_not', '__return_false');
  * @param string $email The email to protect.
  * @param string|null $replace_selector CSS selector to replace text content in (optional).
  * @param bool $replace_self Whether to replace the link's own text content (if selector is null).
- * @return string HTML attributes string.
+ * @return array<string, string> Link attributes.
  */
 function stair_get_email_obfuscation_attrs($email, $replace_selector = null, $replace_self = false) {
     if (!is_email($email)) {
-    return '';
+        return [];
     }
 
     $encoded = base64_encode($email);
-    $attrs = 'href="#" class="email-protect" data-email="' . esc_attr($encoded) . '"';
+    $attrs = [
+        'href' => '#',
+        'class' => 'email-protect',
+        'data-email' => $encoded,
+    ];
 
     if ($replace_selector) {
-        $attrs .= ' data-replace-selector="' . esc_attr($replace_selector) . '"';
+        $attrs['data-replace-selector'] = $replace_selector;
     } elseif ($replace_self) {
-        $attrs .= ' data-replace-text="true"';
+        $attrs['data-replace-text'] = 'true';
     }
 
     return $attrs;
@@ -76,10 +80,16 @@ function stair_email_link($email, $class = '', $display_email = true) {
     // If display_email is true, we replace the text content with the decoded email.
     $attrs = stair_get_email_obfuscation_attrs($email, null, $display_email);
 
-    // Add extra classes if provided
-    $attrs = str_replace('class="email-protect"', 'class="email-protect ' . esc_attr($class) . '"', $attrs);
+    // Add extra classes if provided.
+    if ($class !== '') {
+        $attrs['class'] .= ' ' . $class;
+    }
 
     $content = $display_email ? '...' : ''; // Placeholder
 
-    echo "<a $attrs><$content></a>";
+    echo '<a';
+    foreach ($attrs as $key => $value) {
+        echo ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
+    }
+    echo '>' . esc_html($content) . '</a>';
 }
