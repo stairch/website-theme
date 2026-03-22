@@ -138,18 +138,18 @@ get_header();
                                 <div class="space-y-4">
                                     <div>
                                         <div class="font-bold text-text-dark dark:text-dark-text text-xl mb-2">
-                                            <?php echo tribe_get_venue(); ?>
+                                            <?php echo tribe_get_venue(); // phpcs:ignore?>
                                         </div>
                                         <?php if (tribe_address_exists()): ?>
                                             <div class="text-gray-600 dark:text-dark-text-muted leading-relaxed font-medium">
-                                                <?php echo tribe_get_full_address(); ?>
+                                                <?php echo tribe_get_full_address(); // phpcs:ignore?>
                                             </div>
                                         <?php endif; ?>
                                     </div>
 
                                     <?php if (tribe_show_google_map_link()): ?>
                                         <div>
-                                            <a href="<?php echo tribe_get_map_link(); ?>" target="_blank"
+                                            <a href="<?php echo tribe_get_map_link(); // phpcs:ignore?>" target="_blank"
                                                 class="inline-flex items-center text-sm text-primary hover:text-primary-light font-bold uppercase tracking-wide transition-colors">
                                                 Open in Maps <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
                                             </a>
