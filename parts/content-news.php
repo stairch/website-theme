@@ -113,7 +113,7 @@
                                             // try to find first image in content
                                             $content = get_the_content();
                                             if (preg_match('/<img[^>]+src="([^">]+)"/', $content, $matches)) {
-                                                echo '<img src="' . esc_url($matches[1]) . '" class="w-full h-full object-cover" alt="' . get_the_title() . '">';
+                                                echo '<img src="' . esc_url($matches[1]) . '" class="w-full h-full object-cover" alt="' . esc_attr(get_the_title()) . '">';
                                                 $has_image = true;
                                             }
                                         }

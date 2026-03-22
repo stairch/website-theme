@@ -1,6 +1,6 @@
     <!-- Hero Section -->
     <section class="hero relative h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center text-white"
-        style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/header.jpg');">
+        style="background-image: url(<?php echo esc_url(get_template_directory_uri() . "/assets/header.jpg"); ?>);">
         <div class="hero-overlay absolute inset-0 bg-black/40"></div>
         <div class="hero-content relative z-10 max-w-4xl px-5">
             <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Willkommen bei STAIR</h1>

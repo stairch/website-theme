@@ -34,7 +34,7 @@ get_header(); ?>
                         motivierten Studierenden.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="<?php echo home_url('/kontakt'); ?>"
+                        <a href="<?php echo esc_url(home_url('/kontakt')); ?>"
                             class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-300">
                             Kontakt aufnehmen
                         </a>
