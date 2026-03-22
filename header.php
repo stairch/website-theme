@@ -46,12 +46,12 @@
                         </button>
 
                         <?php
-                        wp_nav_menu(array(
+                        wp_nav_menu([
                             'theme_location' => 'main_menu',
                             'container' => false,
                             'menu_class' => 'nav-menu hidden md:flex list-none gap-8 items-center',
                             'fallback_cb' => false // Don't show garbage if no menu is assigned yet
-                        ));
+                        ]);
                         ?>
                     </nav>
 

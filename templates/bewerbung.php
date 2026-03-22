@@ -1,11 +1,11 @@
 <?php
 /**
  * Template Name: Bewerbung
- * 
+ *
  * Application page template with 2-column layout.
  * Left: Content (Text)
  * Right: Contact Form 7 (assumes form title is "Bewerbung")
- * 
+ *
  * @package STAIR
  */
 

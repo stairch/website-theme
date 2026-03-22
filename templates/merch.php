@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Merch
- * 
+ *
  * Placeholder page for STAIR merchandise.
- * 
+ *
  * @package STAIR
  */
 
@@ -16,7 +16,7 @@ get_header();
         <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-bold text-text-dark dark:text-dark-text mb-4"><?php the_title(); ?></h1>
             <p class="text-lg text-text-light dark:text-dark-text-muted max-w-2xl mx-auto">
-               <?php 
+               <?php
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();

@@ -16,12 +16,12 @@
 
                 <?php if (function_exists('tribe_get_events')): ?>
                     <?php
-                    $upcoming_events = tribe_get_events(array(
+                    $upcoming_events = tribe_get_events([
                         'posts_per_page' => 3,
                         'start_date' => 'now',
                         'orderby' => 'event_date',
                         'order' => 'ASC',
-                    ));
+                    ]);
                     ?>
 
                     <?php if (!empty($upcoming_events)): ?>
@@ -88,10 +88,10 @@
                 </h3>
 
                 <?php
-                $args = array(
+                $args = [
                     'posts_per_page' => 3,
                     'post_status' => 'publish',
-                );
+                ];
                 $query = new WP_Query($args);
                 ?>
 
@@ -107,7 +107,7 @@
                                         <?php
                                         $has_image = false;
                                         if (has_post_thumbnail()) {
-                                            the_post_thumbnail('thumbnail', array('class' => 'w-full h-full object-cover'));
+                                            the_post_thumbnail('thumbnail', ['class' => 'w-full h-full object-cover']);
                                             $has_image = true;
                                         } else {
                                             // try to find first image in content

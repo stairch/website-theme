@@ -1,7 +1,7 @@
 <?php
 /**
  * Custom Post Type: STAIR Members
- * 
+ *
  * Registers the stair_member CPT and associated meta boxes
  * for displaying board members on the Vorstand page.
  */
@@ -10,7 +10,7 @@
  * Register the STAIR Member custom post type
  */
 function stair_register_member_cpt() {
-    $labels = array(
+    $labels = [
         'name'                  => 'STAIR Members',
         'singular_name'         => 'STAIR Member',
         'menu_name'             => 'STAIR Members',
@@ -23,23 +23,23 @@ function stair_register_member_cpt() {
         'not_found'             => 'No members found',
         'not_found_in_trash'    => 'No members found in trash',
         'all_items'             => 'All Members',
-    );
+    ];
 
-    $args = array(
+    $args = [
         'labels'             => $labels,
         'public'             => true,
         'publicly_queryable' => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => array('slug' => 'member'),
+        'rewrite'            => ['slug' => 'member'],
         'capability_type'    => 'post',
         'has_archive'        => false,
         'hierarchical'       => false,
         'menu_position'      => 5,
         'menu_icon'          => 'dashicons-groups',
-        'supports'           => array('title', 'thumbnail'), // Title = Name, Thumbnail = Photo
-    );
+        'supports'           => ['title', 'thumbnail'], // Title = Name, Thumbnail = Photo
+    ];
 
     register_post_type('stair_member', $args);
 }
@@ -106,7 +106,7 @@ function stair_member_details_callback($post) {
  */
 function stair_save_member_meta($post_id) {
     // Security checks
-    if (!isset($_POST['stair_member_nonce']) || 
+    if (!isset($_POST['stair_member_nonce']) ||
         !wp_verify_nonce($_POST['stair_member_nonce'], 'stair_member_details_nonce')) {
         return;
     }
@@ -138,7 +138,7 @@ add_action('save_post_stair_member', 'stair_save_member_meta');
  * Add custom columns to the members list in admin
  */
 function stair_member_admin_columns($columns) {
-    $new_columns = array();
+    $new_columns = [];
     foreach ($columns as $key => $value) {
         $new_columns[$key] = $value;
         if ($key === 'title') {
@@ -177,4 +177,3 @@ function stair_member_sortable_columns($columns) {
     return $columns;
 }
 add_filter('manage_edit-stair_member_sortable_columns', 'stair_member_sortable_columns');
-

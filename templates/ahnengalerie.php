@@ -36,8 +36,7 @@ get_header();
                 'posts_per_page' => -1,
         ]);
 
-        function semester_value($sem)
-        {
+        function semester_value($sem) {
             // 'HS' or 'FS'
             $type = substr($sem, 0, 2);
             $year = (int) substr($sem, 2);

@@ -1,18 +1,18 @@
 <?php
 /**
  * Template Name: Kontakt
- * 
+ *
  * Contact page template with Contact Form 7 integration.
  * Requires: Contact Form 7 plugin to be installed and active.
- * 
+ *
  * After installing CF7, create a form with these fields:
  * - Name (text, required)
  * - Email (email, required)
  * - Topic/Betreff (text, required)
  * - Message/Nachricht (textarea, required)
- * 
+ *
  * Then paste the CF7 shortcode in the page content.
- * 
+ *
  * @package STAIR
  */
 
@@ -26,7 +26,7 @@ get_header();
             <h1 class="text-4xl md:text-5xl font-bold text-text-dark dark:text-dark-text mb-4"><?php the_title(); ?></h1>
             <p class="text-lg text-text-light dark:text-dark-text-muted max-w-2xl mx-auto">
                 
-            <?php 
+            <?php
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();
@@ -78,9 +78,9 @@ get_header();
                         </div>
                         <div>
                             <h3 class="font-semibold text-text-dark dark:text-dark-text">E-Mail</h3>
-                            <?php 
+                            <?php
                             $contact_email = get_theme_mod('stair_contact_email', 'info@stair.ch');
-                            stair_email_link($contact_email, 'text-primary hover:underline'); 
+                            stair_email_link($contact_email, 'text-primary hover:underline');
                             ?>
                         </div>
                     </div>
@@ -92,13 +92,13 @@ get_header();
                     <div class="flex gap-3">
                         <?php
                         // get social links from individual ACF fields
-                        $social_links = array();
-                        
+                        $social_links = [];
+
                         if (function_exists('get_field')) {
                             for ($i = 1; $i <= 5; $i++) {
                                 $url = get_field('social_' . $i . '_url');
                                 $icon = get_field('social_' . $i . '_icon');
-                                
+
                                 // only add if url and icon are set
                                 if ($url && $icon) {
                                     // derive platform name from URL for accessibility
@@ -106,29 +106,29 @@ get_header();
                                     $host = str_replace('www.', '', $host);
                                     $platform = ucfirst(explode('.', $host)[0]);
 
-                                    $social_links[] = array(
+                                    $social_links[] = [
                                         'platform' => $platform,
                                         'url' => $url,
                                         'icon' => $icon,
-                                    );
+                                    ];
                                 }
                             }
                         }
-                        
+
                         // fallback defaults if no social links configured
                         if (empty($social_links)) {
-                            $social_links = array(
-                                array('platform' => 'LinkedIn', 'url' => 'https://www.linkedin.com/company/stairhslu/', 'icon' => 'linkedin'),
-                                array('platform' => 'Instagram', 'url' => 'https://www.instagram.com/stairhslu/', 'icon' => 'instagram'),
-                                array('platform' => 'Facebook', 'url' => 'https://www.facebook.com/stairhslu/', 'icon' => 'facebook'),
-                            );
+                            $social_links = [
+                                ['platform' => 'LinkedIn', 'url' => 'https://www.linkedin.com/company/stairhslu/', 'icon' => 'linkedin'],
+                                ['platform' => 'Instagram', 'url' => 'https://www.instagram.com/stairhslu/', 'icon' => 'instagram'],
+                                ['platform' => 'Facebook', 'url' => 'https://www.facebook.com/stairhslu/', 'icon' => 'facebook'],
+                            ];
                         }
-                        
+
                         foreach ($social_links as $social) :
                             $platform = esc_attr($social['platform']);
                             $url = esc_url($social['url']);
                             $icon = trim($social['icon']);
-                            
+
                             $is_svg = str_starts_with($icon, '<svg');
                             $is_url = filter_var($icon, FILTER_VALIDATE_URL) || str_starts_with($icon, '/');
                         ?>

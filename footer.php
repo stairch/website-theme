@@ -29,12 +29,12 @@
                 <p class="text-text-lighter dark:text-dark-text-muted text-sm">Mit Unterstützung von:</p>
                 <?php
                 // Fetch all sponsors
-                $carousel_sponsors = new WP_Query(array(
+                $carousel_sponsors = new WP_Query([
                     'post_type' => 'sponsor',
                     'posts_per_page' => -1,
                     'orderby' => 'title',
                     'order' => 'ASC',
-                ));
+                ]);
 
                 $sponsors_data = [];
                 if ($carousel_sponsors->have_posts()) {
@@ -68,7 +68,7 @@
                     <a href="<?php echo esc_url($sponsor['url']); ?>" target="_blank" rel="noopener noreferrer"
                         class="shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                         title="<?php echo esc_attr($sponsor['title']); ?>">
-                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, array('class' => 'h-8 w-auto object-contain')); ?>
+                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, ['class' => 'h-8 w-auto object-contain']); ?>
                     </a>
                     <?php
                 } else {
@@ -87,7 +87,7 @@
                                     <a href="<?php echo esc_url($sponsor['url']); ?>" target="_blank" rel="noopener noreferrer"
                                         class="shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                                         title="<?php echo esc_attr($sponsor['title']); ?>">
-                                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, array('class' => 'h-8 w-auto object-contain')); ?>
+                                        <?php echo wp_get_attachment_image($sponsor['logo_id'], 'medium', false, ['class' => 'h-8 w-auto object-contain']); ?>
                                     </a>
                                     <?php
                                 }

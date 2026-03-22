@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Dummy Content Generator for STAIR Theme
- * 
- * Usage: 
+ *
+ * Usage:
  * 1. Log in as an Administrator.
  * 2. Visit your WordPress Dashboard (e.g., /wp-admin/).
  * 3. Append ?generate_stair_dummy=1 to the URL (e.g., /wp-admin/?generate_stair_dummy=1).
- * 
+ *
  * Safety: This script only runs if:
  * - The user is an admin ('manage_options').
  * - The environment is NOT 'production' (controlled by WP_ENVIRONMENT_TYPE).
@@ -30,27 +31,27 @@ function stair_generate_dummy_content() {
     // Generate Posts
     echo '<h2>Posts:</h2>';
     $galerie_cat = get_category_by_slug('galerie');
-    $galerie_cat_id = $galerie_cat ? $galerie_cat->term_id : array();
+    $galerie_cat_id = $galerie_cat ? $galerie_cat->term_id : [];
 
     for ($i = 1; $i <= $num_posts; $i++) {
         // Stagger posts 1 week apart, ending with today
         $days_ago = ($i - 1) * 7;
         $post_date = date('Y-m-d H:i:s', strtotime("-$days_ago days"));
 
-        $post_args = array(
+        $post_args = [
             'post_title'   => "Dummy Post #$i: " . wp_generate_password(8, false),
             'post_content' => 'This is a dummy post content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             'post_status'  => 'publish',
             'post_type'    => 'post',
             'post_date'    => $post_date,
-        );
+        ];
 
         if ($galerie_cat_id) {
-            $post_args['post_category'] = array($galerie_cat_id);
+            $post_args['post_category'] = [$galerie_cat_id];
         }
 
         $post_id = wp_insert_post($post_args);
-        
+
         if ($post_id) {
             echo "Created post $post_id dated $post_date <br>";
         }
@@ -60,19 +61,19 @@ function stair_generate_dummy_content() {
     // Generate Events (Tribe Events)
     if (class_exists('Tribe__Events__Main')) {
         echo '<h2>Events:</h2>';
-        
+
         // Helper to create event
-        $create_event_func = function($title, $start_datetime, $end_datetime) {
+        $create_event_func = function ($title, $start_datetime, $end_datetime) {
             $event_id = null;
             // Try the newer ORM API first (recommended approach)
             if (function_exists('tribe_events')) {
-                $event_id = tribe_events()->set_args(array(
+                $event_id = tribe_events()->set_args([
                     'title'       => $title,
                     'content'     => 'This is a dummy event description.',
                     'status'      => 'publish',
                     'start_date'  => $start_datetime,
                     'end_date'    => $end_datetime,
-                ))->create()->ID;
+                ])->create()->ID;
             }
             // Fallback to legacy function with correct separate date/time parameters
             elseif (function_exists('tribe_create_event')) {
@@ -82,7 +83,7 @@ function stair_generate_dummy_content() {
                 $end_hour   = date('H', strtotime($end_datetime));
                 $end_min    = date('i', strtotime($end_datetime));
 
-                $event_id = tribe_create_event(array(
+                $event_id = tribe_create_event([
                     'post_title'        => $title,
                     'post_content'      => 'This is a dummy event description.',
                     'post_status'       => 'publish',
@@ -93,7 +94,7 @@ function stair_generate_dummy_content() {
                     'EventEndHour'      => $end_hour,
                     'EventEndMinute'    => $end_min,
                     'EventAllDay'       => false,
-                ));
+                ]);
             }
             return $event_id;
         };
@@ -103,7 +104,7 @@ function stair_generate_dummy_content() {
         for ($i = 1; $i <= $num_events; $i++) {
             $weeks_ago = $i;
             $timestamp = strtotime("-$weeks_ago weeks");
-            
+
             $start_datetime = date('Y-m-d 18:00:00', $timestamp);
             $end_datetime   = date('Y-m-d 20:00:00', $timestamp);
             $event_title    = "Past Dummy Event #$i: " . wp_generate_password(8, false);
@@ -124,7 +125,7 @@ function stair_generate_dummy_content() {
             // Start next year, spaced 1 week apart
             $weeks_future = $i - 1; // Start from 0 weeks offset from "next year"
             $timestamp = strtotime("+1 year +$weeks_future weeks");
-            
+
             $start_datetime = date('Y-m-d 18:00:00', $timestamp);
             $end_datetime   = date('Y-m-d 20:00:00', $timestamp);
             $event_title    = "Future Dummy Event #$i: " . wp_generate_password(8, false);
@@ -145,34 +146,34 @@ function stair_generate_dummy_content() {
 
     // Generate Members
     echo '<h2>Members:</h2>';
-    $positions = array('Präsident', 'Vizepräsident', 'Kassier', 'Aktuar', 'Beisitzer');
+    $positions = ['Präsident', 'Vizepräsident', 'Kassier', 'Aktuar', 'Beisitzer'];
     for ($i = 1; $i <= 5; $i++) {
-        $member_id = wp_insert_post(array(
+        $member_id = wp_insert_post([
             'post_title'  => "Member Name $i",
             'post_status' => 'publish',
             'post_type'   => 'stair_member',
-        ));
+        ]);
         if ($member_id) {
-            update_post_meta($member_id, '_stair_member_position', $positions[$i-1]);
+            update_post_meta($member_id, '_stair_member_position', $positions[$i - 1]);
             update_post_meta($member_id, '_stair_member_study_status', 'seit 202' . $i . ' Informatik');
             update_post_meta($member_id, '_stair_member_order', $i);
-            echo "Created member $member_id as " . $positions[$i-1] . "<br>";
+            echo "Created member $member_id as " . $positions[$i - 1] . "<br>";
         }
     }
 
     // Generate Sponsors
     echo '<h2>Sponsors:</h2>';
-    $tiers = array('main_partner', 'event_sponsor', 'supporter');
+    $tiers = ['main_partner', 'event_sponsor', 'supporter'];
     for ($i = 1; $i <= 3; $i++) {
-        $sponsor_id = wp_insert_post(array(
+        $sponsor_id = wp_insert_post([
             'post_title'  => "Sponsor Corporation $i",
             'post_status' => 'publish',
             'post_type'   => 'sponsor',
-        ));
+        ]);
         if ($sponsor_id) {
             update_post_meta($sponsor_id, 'sponsor_url', 'https://example.com/sponsor' . $i);
-            update_post_meta($sponsor_id, 'sponsor_tier', $tiers[$i-1]);
-            echo "Created sponsor $sponsor_id with tier " . $tiers[$i-1] . "<br>";
+            update_post_meta($sponsor_id, 'sponsor_tier', $tiers[$i - 1]);
+            echo "Created sponsor $sponsor_id with tier " . $tiers[$i - 1] . "<br>";
         }
     }
 

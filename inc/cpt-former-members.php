@@ -1,7 +1,7 @@
 <?php
 /**
  * Custom Post Type: STAIR Former Members (Ahnengallerie)
- * 
+ *
  * Registers the stair_former_member CPT and associated meta boxes
  * for displaying previous board members.
  */
@@ -9,9 +9,8 @@
 /**
  * Register the STAIR Former Member custom post type
  */
-function stair_register_former_member_cpt()
-{
-    $labels = array(
+function stair_register_former_member_cpt() {
+    $labels = [
         'name' => 'Former Members',
         'singular_name' => 'Former Member',
         'menu_name' => 'Former Members',
@@ -24,23 +23,23 @@ function stair_register_former_member_cpt()
         'not_found' => 'No former members found',
         'not_found_in_trash' => 'No former members found in trash',
         'all_items' => 'All Former Members',
-    );
+    ];
 
-    $args = array(
+    $args = [
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'query_var' => true,
-        'rewrite' => array('slug' => 'ahnengallerie'),
+        'rewrite' => ['slug' => 'ahnengallerie'],
         'capability_type' => 'post',
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => 6,
         'menu_icon' => 'dashicons-clock', // Distinct icon from current members
-        'supports' => array('title', 'thumbnail'), // Title = Name, Thumbnail = Photo
-    );
+        'supports' => ['title', 'thumbnail'], // Title = Name, Thumbnail = Photo
+    ];
 
     register_post_type('stair_former_member', $args);
 }
@@ -49,8 +48,7 @@ add_action('init', 'stair_register_former_member_cpt');
 /**
  * Add meta boxes for former member details
  */
-function stair_former_member_meta_boxes()
-{
+function stair_former_member_meta_boxes() {
     add_meta_box(
         'stair_former_member_details',
         'Former Member Details',
@@ -65,8 +63,7 @@ add_action('add_meta_boxes', 'stair_former_member_meta_boxes');
 /**
  * Render the meta box fields
  */
-function stair_former_member_details_callback($post)
-{
+function stair_former_member_details_callback($post) {
     wp_nonce_field('stair_former_member_details_nonce', 'stair_former_member_nonce');
 
     $position = get_post_meta($post->ID, '_stair_former_member_position', true);
@@ -106,8 +103,7 @@ function stair_former_member_details_callback($post)
 /**
  * Save meta box data
  */
-function stair_save_former_member_meta($post_id)
-{
+function stair_save_former_member_meta($post_id) {
     // Security checks
     if (
         !isset($_POST['stair_former_member_nonce']) ||
@@ -142,9 +138,8 @@ add_action('save_post_stair_former_member', 'stair_save_former_member_meta');
 /**
  * Add custom columns to the former members list in admin
  */
-function stair_former_member_admin_columns($columns)
-{
-    $new_columns = array();
+function stair_former_member_admin_columns($columns) {
+    $new_columns = [];
     foreach ($columns as $key => $value) {
         $new_columns[$key] = $value;
         if ($key === 'title') {
@@ -160,8 +155,7 @@ add_filter('manage_stair_former_member_posts_columns', 'stair_former_member_admi
 /**
  * Populate custom columns
  */
-function stair_former_member_admin_column_content($column, $post_id)
-{
+function stair_former_member_admin_column_content($column, $post_id) {
     switch ($column) {
         case 'position':
             echo esc_html(get_post_meta($post_id, '_stair_former_member_position', true));
@@ -179,8 +173,7 @@ add_action('manage_stair_former_member_posts_custom_column', 'stair_former_membe
 /**
  * Make order column sortable
  */
-function stair_former_member_sortable_columns($columns)
-{
+function stair_former_member_sortable_columns($columns) {
     $columns['order'] = 'order';
     return $columns;
 }
@@ -189,8 +182,7 @@ add_filter('manage_edit-stair_former_member_sortable_columns', 'stair_former_mem
 /**
  * Sort former members archive by order field
  */
-function stair_former_member_archive_sort($query)
-{
+function stair_former_member_archive_sort($query) {
     if (!is_admin() && $query->is_main_query() && is_post_type_archive('stair_former_member')) {
         $query->set('meta_key', '_stair_former_member_order');
         $query->set('orderby', 'meta_value_num');

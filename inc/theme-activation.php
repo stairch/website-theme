@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Theme activation setup.
- * 
+ *
  * Creates default pages and navigation menu on first theme activation.
  * Uses a flag in wp_options to ensure setup only runs once.
- * 
+ *
  * @package STAIR
  */
 
@@ -18,7 +19,7 @@ function stair_theme_activation_setup() {
     stair_create_default_pages();
     stair_create_navigation_menu();
     stair_create_default_categories();
-    
+
     // set permalink structure to "Month and name"
     // /%year%/%monthnum%/%postname%/
     global $wp_rewrite;
@@ -33,43 +34,43 @@ add_action('after_switch_theme', 'stair_theme_activation_setup');
  * Create default pages with their templates.
  */
 function stair_create_default_pages() {
-    $pages = array(
-        array(
+    $pages = [
+        [
             'title'    => 'Vorstand',
             'slug'     => 'vorstand',
             'template' => 'templates/vorstand.php',
             'content'  => 'Lerne das Team kennen, das sich für deine Interessen einsetzt und STAIR am Laufen hält.',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Docker Bar',
             'slug'     => 'docker-bar',
             'template' => 'templates/docker-bar.php',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Galerie',
             'slug'     => 'galerie',
             'template' => 'templates/galerie.php',
             'content'  => 'Eindrücke von unseren Events und Aktivitäten.',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Kontakt',
             'slug'     => 'kontakt',
             'template' => 'templates/kontakt.php',
             'content'  => 'Hast du Fragen, Anregungen oder möchtest du dich bei uns engagieren?
                 Wir freuen uns auf deine Nachricht!',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Merch',
             'slug'     => 'merch',
             'template' => 'templates/merch.php',
             'content'  => 'STAIR Merchandise - Zeig deinen Spirit!',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Bewerbung',
             'slug'     => 'bewerbung',
             'template' => 'templates/bewerbung.php',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Bewerbung Docker Bar',
             'slug'     => 'docker-bar-application',
             'template' => 'templates/docker-bar-application.php',
@@ -91,43 +92,43 @@ function stair_create_default_pages() {
 <p>Normally, only 1 shift per person is distributed so that as many students as possible can be offered an opportunity.</p>
 <h3>We offer</h3>
 <p>– 18 CHF hourly pay<br>– 2 free drinks per shift<br>– lots of freedom while working</p>',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Ahnengalerie',
             'slug'     => 'ahnengalerie',
             'template' => 'templates/ahnengalerie.php',
             'content'  => 'Die ehemaligen Mitglieder, die den Verein geprägt haben.',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Partner',
             'slug'     => 'partner',
             'template' => 'templates/partners.php',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Vergangene Events',
             'slug'     => 'vergangene-events',
             'template' => 'templates/past-events.php',
             'content'  => 'Schau dir unsere vergangenen Veranstaltungen an und erlebe, was wir bereits erreicht haben.',
-        ),
-        array(
+        ],
+        [
             'title'    => 'Hoppla! Da hat wohl jemand einen Tritt verpasst!',
             'slug'     => '404',
             'template' => 'templates/404.php',
             'content'  => 'Es scheint, als könnten wir die Seite nicht finden, wonach du suchst. <br><br><a href="/" class="inline-block px-8 py-3.5 bg-primary text-white rounded no-underline font-semibold transition-all duration-300 hover:bg-[#094d42] hover:-translate-y-0.5 hover:shadow-lg">Zur Startseite</a>',
-        ),
-    );
+        ],
+    ];
 
     foreach ($pages as $page_data) {
         $existing_page = get_page_by_path($page_data['slug']);
 
         if (!$existing_page) {
-            $page_id = wp_insert_post(array(
+            $page_id = wp_insert_post([
                 'post_title'   => $page_data['title'],
                 'post_name'    => $page_data['slug'],
                 'post_status'  => 'publish',
                 'post_type'    => 'page',
                 'post_content' => isset($page_data['content']) ? $page_data['content'] : '',
-            ));
+            ]);
 
             // assign the page template
             if ($page_id && !is_wp_error($page_id)) {
@@ -149,26 +150,26 @@ function stair_create_navigation_menu() {
         $menu_id = wp_create_nav_menu($menu_name);
 
         if (!is_wp_error($menu_id)) {
-            $menu_items = array(
+            $menu_items = [
                 'vorstand',
                 'events',
                 'docker-bar',
                 'galerie',
                 'kontakt',
                 'merch',
-            );
+            ];
 
             $position = 0;
             foreach ($menu_items as $slug) {
                 if ($slug === 'events') {
                     // Add Events Post Type Archive
-                    wp_update_nav_menu_item($menu_id, 0, array(
+                    wp_update_nav_menu_item($menu_id, 0, [
                         'menu-item-title' => 'Events',
                         'menu-item-object' => 'tribe_events',
                         'menu-item-type' => 'post_type_archive',
                         'menu-item-status' => 'publish',
                         'menu-item-position' => $position,
-                    ));
+                    ]);
                     $position++;
                     continue;
                 }
@@ -176,14 +177,14 @@ function stair_create_navigation_menu() {
                 $page = get_page_by_path($slug);
 
                 if ($page) {
-                    wp_update_nav_menu_item($menu_id, 0, array(
+                    wp_update_nav_menu_item($menu_id, 0, [
                         'menu-item-title'     => $page->post_title,
                         'menu-item-object'    => 'page',
                         'menu-item-object-id' => $page->ID,
                         'menu-item-type'      => 'post_type',
                         'menu-item-status'    => 'publish',
                         'menu-item-position'  => $position,
-                    ));
+                    ]);
                     $position++;
                 }
             }
@@ -199,10 +200,10 @@ function stair_create_navigation_menu() {
  * Create default categories.
  */
 function stair_create_default_categories() {
-    $categories = array(
+    $categories = [
         'News',
         'Galerie'
-    );
+    ];
 
     foreach ($categories as $cat_name) {
         if (!term_exists($cat_name, 'category')) {
@@ -226,10 +227,10 @@ function stair_create_default_contact_forms() {
         return;
     }
 
-    $forms = array(
-        'Kontakt' => array(
+    $forms = [
+        'Kontakt' => [
             'title' => 'Kontakt',
-            'content' => 
+            'content' =>
 '<label> Name
     [text* your-name autocomplete:name] </label>
 
@@ -245,17 +246,17 @@ function stair_create_default_contact_forms() {
 [turnstile]
 [submit "Senden"]',
             // Simple mail template
-            'mail' => array(
+            'mail' => [
                 'subject' => 'STAIR Kontakt: [your-subject]',
                 'sender' => '[your-name] <[your-email]>',
                 'body' => "Von: [your-name] <[your-email]>\nBetreff: [your-subject]\n\nNachricht:\n[your-message]\n\n--\nDiese E-Mail wurde gesendet von einem Kontaktformular auf STAIR (site_url)",
                 'recipient' => get_option('admin_email'),
                 'additional_headers' => 'Reply-To: [your-email]',
-            ),
-        ),
-        'Bewerbung' => array(
+            ],
+        ],
+        'Bewerbung' => [
             'title' => 'Bewerbung',
-            'content' => 
+            'content' =>
 '<div class="space-y-6">
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -307,18 +308,18 @@ function stair_create_default_contact_forms() {
     </div>
 
 </div>',
-            'mail' => array(
+            'mail' => [
                 'subject' => 'STAIR Bewerbung: [your-name]',
                 'sender' => '[your-name] <[your-email]>',
                 'body' => "Neue Bewerbung eingegangen.\n\nName: [your-name]\nE-Mail: [your-email]\nStudiengang: [your-studiengang]\n\nNachricht:\n[your-message]\n\n--\n(Lebenslauf befindet sich im Anhang)",
                 'recipient' => get_option('admin_email'),
                 'additional_headers' => 'Reply-To: [your-email]',
                 'attachments' => '[your-cv]',
-            ),
-        ),
-        'Docker Bar Application' => array(
+            ],
+        ],
+        'Docker Bar Application' => [
             'title' => 'Docker Bar Application',
-            'content' => 
+            'content' =>
 '<div class="space-y-6">
     
     <div class="space-y-1.5">
@@ -354,36 +355,36 @@ function stair_create_default_contact_forms() {
     </div>
 
 </div>',
-            'mail' => array(
+            'mail' => [
                 'subject' => 'Docker Bar Bewerbung: [your-name]',
                 'sender' => '[your-name] <[your-email]>',
                 'body' => "Neue Bewerbung für die Docker Bar eingegangen.\n\nName: [your-name]\nE-Mail: [your-email]\nTelefon: [your-phone]\n\nSchichten:\n[schicht]\n\nNachricht:\n[your-message]",
                 'recipient' => get_option('admin_email'),
                 'additional_headers' => 'Reply-To: [your-email]',
-            ),
-        )
-    );
+            ],
+        ]
+    ];
 
     foreach ($forms as $key => $form_data) {
         // check if form with this title already exists
         $existing_form = get_page_by_title($form_data['title'], OBJECT, 'wpcf7_contact_form');
 
         if (!$existing_form) {
-            $form_id = wp_insert_post(array(
+            $form_id = wp_insert_post([
                 'post_title'   => $form_data['title'],
                 'post_type'    => 'wpcf7_contact_form',
                 'post_status'  => 'publish',
                 'post_content' => $form_data['content'],
-            ));
+            ]);
 
             if ($form_id && !is_wp_error($form_id)) {
                 // set default meta for mail if possible, though CF7 handles this via special meta keys usually.
                 // CF7 stores form properties in '_form', '_mail', '_mail_2', '_messages', '_additional_settings', '_locale'
-                
+
                 update_post_meta($form_id, '_form', $form_data['content']);
                 update_post_meta($form_id, '_mail', $form_data['mail']);
                 // default messages
-                update_post_meta($form_id, '_messages', array('mail_sent_ok' => 'Vielen Dank für deine Nachricht. Sie wurde versendet.'));
+                update_post_meta($form_id, '_messages', ['mail_sent_ok' => 'Vielen Dank für deine Nachricht. Sie wurde versendet.']);
             }
         }
     }
@@ -392,4 +393,3 @@ function stair_create_default_contact_forms() {
     update_option('stair_contact_forms_created', true);
 }
 add_action('admin_init', 'stair_create_default_contact_forms');
-

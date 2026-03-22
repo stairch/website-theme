@@ -1,10 +1,10 @@
 <?php
 /**
  * Template Name: Docker Bar
- * 
+ *
  * Docker Bar page template with opening hours and information.
  * Content is managed through WordPress page editor and ACF fields (if available).
- * 
+ *
  * @package STAIR
  */
 
@@ -35,8 +35,9 @@ $opening_hours_text = str_replace(['<br />', '<br/>', '<br>'], "\n", $opening_ho
 $lines = explode("\n", $opening_hours_text);
 foreach ($lines as $line) {
     $line = trim($line);
-    if (empty($line))
+    if (empty($line)) {
         continue;
+    }
 
     // Try to split by colon (but only the first one to preserve time format)
     if (strpos($line, ':') !== false) {

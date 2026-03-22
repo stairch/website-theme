@@ -1,11 +1,11 @@
 <?php
 /**
  * Template part for displaying a member card (current or former)
- * 
+ *
  * Usage:
  *   get_template_part('parts/content-member-card', null, ['type' => 'current']);
  *   get_template_part('parts/content-member-card', null, ['type' => 'former']);
- * 
+ *
  * @package STAIR
  */
 
@@ -17,13 +17,13 @@ $meta_prefix = $is_former ? '_stair_former_member' : '_stair_member';
 $position = get_post_meta(get_the_ID(), $meta_prefix . '_position', true);
 
 // Secondary info: study status for current, active time for former
-$secondary_info = $is_former 
+$secondary_info = $is_former
     ? get_post_meta(get_the_ID(), $meta_prefix . '_active_time', true)
     : get_post_meta(get_the_ID(), $meta_prefix . '_study_status', true);
 $secondary_icon = $is_former ? 'calendar' : 'graduation-cap';
 
 // Styling differences
-$card_classes = $is_former 
+$card_classes = $is_former
     ? 'bg-white dark:bg-dark-surface rounded-xl shadow-sm overflow-hidden transition-all duration-300 grayscale hover:grayscale-0'
     : 'bg-white dark:bg-dark-surface rounded-xl shadow-md overflow-hidden';
 
@@ -43,9 +43,9 @@ $position_classes = $is_former
 <article class="<?php echo esc_attr($card_classes); ?>">
     <div class="aspect-square <?php echo esc_attr($gradient_classes); ?> overflow-hidden">
         <?php if (has_post_thumbnail()): ?>
-            <?php the_post_thumbnail('stair-member-thumb', array(
+            <?php the_post_thumbnail('stair-member-thumb', [
                 'class' => 'w-full h-full object-cover',
-            )); ?>
+            ]); ?>
         <?php else: ?>
             <div class="w-full h-full flex items-center justify-center">
                 <i data-lucide="user" class="<?php echo esc_attr($placeholder_icon_classes); ?>"></i>
