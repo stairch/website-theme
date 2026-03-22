@@ -106,7 +106,7 @@ get_header();
                         } else {
                             $link = str_replace('page-numbers', 'px-4 py-2 bg-white dark:bg-dark-surface text-text-light dark:text-dark-text border border-gray-200 dark:border-dark-border rounded-lg hover:bg-gray-50 dark:hover:bg-dark-border/50 hover:text-primary dark:hover:text-primary transition-all duration-200 flex items-center justify-center min-w-[40px] shadow-sm', $link);
                         }
-                        echo $link;
+                        echo wp_kses_post($link);
                     }
                 }
                 ?>

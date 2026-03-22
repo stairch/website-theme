@@ -36,7 +36,7 @@ get_header();
                     <a href="<?php echo esc_url(tribe_get_events_link()); ?>"
                         class="inline-flex items-center text-sm font-medium text-text-light dark:text-dark-text-muted hover:text-primary dark:hover:text-primary mb-8 transition-colors duration-200">
                         <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
-                        <?php printf(esc_html__('All %s', 'the-events-calendar'), $events_label_plural); ?>
+                        <?php printf(esc_html__('All %s', 'the-events-calendar'), esc_html($events_label_plural)); ?>
                     </a>
 
                     <h1
@@ -50,7 +50,7 @@ get_header();
                             class="flex items-center bg-white dark:bg-dark-bg px-5 py-2.5 rounded-2xl border border-gray-200 dark:border-dark-border shadow-sm">
                             <i data-lucide="calendar" class="w-5 h-5 mr-3 text-primary"></i>
                             <span class="font-medium text-text-dark dark:text-dark-text">
-                                <?php echo tribe_get_start_date($event_id, false, 'l, j. F Y'); ?>
+                                <?php echo esc_html(tribe_get_start_date($event_id, false, 'l, j. F Y')); ?>
                             </span>
                         </div>
                         <?php if (tribe_get_cost()): ?>
@@ -58,7 +58,7 @@ get_header();
                                 class="flex items-center bg-white dark:bg-dark-bg px-5 py-2.5 rounded-2xl border border-gray-200 dark:border-dark-border shadow-sm">
                                 <i data-lucide="tag" class="w-5 h-5 mr-3 text-primary"></i>
                                 <span
-                                    class="font-medium text-text-dark dark:text-dark-text"><?php echo tribe_get_cost(null, true); ?></span>
+                                    class="font-medium text-text-dark dark:text-dark-text"><?php echo wp_kses_post(tribe_get_cost(null, true)); ?></span>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -94,10 +94,10 @@ get_header();
                                         Start</div>
                                     <div class="flex-1">
                                         <div class="text-text-dark dark:text-dark-text font-bold text-lg">
-                                            <?php echo tribe_get_start_date($event_id, false, 'D, d.m.Y'); ?>
+                                            <?php echo esc_html(tribe_get_start_date($event_id, false, 'D, d.m.Y')); ?>
                                         </div>
                                         <div class="text-gray-500 dark:text-dark-text-muted font-medium">
-                                            <?php echo tribe_get_start_date($event_id, false, 'H:i'); ?> Uhr
+                                            <?php echo esc_html(tribe_get_start_date($event_id, false, 'H:i')); ?> Uhr
                                         </div>
                                     </div>
                                 </div>
@@ -107,10 +107,10 @@ get_header();
                                         End</div>
                                     <div class="flex-1">
                                         <div class="text-text-dark dark:text-dark-text font-bold text-lg">
-                                            <?php echo tribe_get_end_date($event_id, false, 'D, d.m.Y'); ?>
+                                            <?php echo esc_html(tribe_get_end_date($event_id, false, 'D, d.m.Y')); ?>
                                         </div>
                                         <div class="text-gray-500 dark:text-dark-text-muted font-medium">
-                                            <?php echo tribe_get_end_date($event_id, false, 'H:i'); ?> Uhr
+                                            <?php echo esc_html(tribe_get_end_date($event_id, false, 'H:i')); ?> Uhr
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@ get_header();
 
                             <?php if (tribe_get_single_ical_link()): ?>
                                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-dark-border/50">
-                                    <a href="<?php echo tribe_get_single_ical_link(); ?>"
+                                    <a href="<?php echo esc_url(tribe_get_single_ical_link()); ?>"
                                         class="flex items-center justify-center w-full py-3.5 px-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-light transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5">
                                         <i data-lucide="calendar-plus" class="w-5 h-5 mr-2"></i>
                                         Add to Calendar
@@ -169,7 +169,7 @@ get_header();
                                 </h3>
                                 <div class="space-y-4">
                                     <div class="font-bold text-text-dark dark:text-dark-text text-lg">
-                                        <?php echo tribe_get_organizer(); ?>
+                                        <?php echo esc_html(tribe_get_organizer()); ?>
                                     </div>
                                     <div class="flex flex-col gap-3">
                                         <?php
@@ -193,7 +193,7 @@ get_header();
                                         <?php endif; ?>
                                         <?php if ($website): ?>
                                             <div class="text-sm pt-1">
-                                                <?php echo $website; ?>
+                                                <?php echo wp_kses_post($website); ?>
                                             </div>
                                         <?php endif; ?>
                                     </div>

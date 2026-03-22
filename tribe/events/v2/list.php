@@ -239,9 +239,9 @@ get_header();
                                     <div
                                         class="bg-primary text-white p-6 md:w-40 shrink-0 flex flex-col items-center justify-center text-center">
                                         <span
-                                            class="text-3xl font-bold"><?php echo tribe_get_start_date($event_id, false, 'd'); ?></span>
+                                            class="text-3xl font-bold"><?php echo esc_html(tribe_get_start_date($event_id, false, 'd')); ?></span>
                                         <span
-                                            class="text-sm uppercase tracking-wider"><?php echo tribe_get_start_date($event_id, false, 'M Y'); ?></span>
+                                            class="text-sm uppercase tracking-wider"><?php echo esc_html(tribe_get_start_date($event_id, false, 'M Y')); ?></span>
                                     </div>
 
                                     <!-- Event Details -->
@@ -267,7 +267,7 @@ get_header();
                                         </div>
 
                                         <p class="text-text-light dark:text-dark-text-muted line-clamp-2">
-                                            <?php echo wp_trim_words($event->post_content, 30); ?>
+                                            <?php echo esc_html(wp_trim_words(wp_strip_all_tags($event->post_content), 30)); ?>
                                         </p>
                                     </div>
 
