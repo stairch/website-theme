@@ -95,7 +95,7 @@ get_header();
 
         <!-- Back Link -->
         <div class="mt-20 text-center">
-            <a href="<?php echo home_url('/vorstand'); ?>"
+            <a href="<?php echo esc_url(home_url('/vorstand')); ?>"
                 class="text-primary hover:text-primary-dark font-medium inline-flex items-center transition-colors group">
                 <i data-lucide="arrow-left" class="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform"></i>
                 Zurück zum Vorstand

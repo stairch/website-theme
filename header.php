@@ -5,7 +5,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png"
-        href="<?php echo get_template_directory_uri(); ?>/assets/STAIR-Logo-transparent-150x150.png">
+        href="<?php echo esc_url(get_template_directory_uri() . "/assets/STAIR-Logo-transparent-150x150.png"); ?>">
     <!-- Prevent flash of wrong theme by setting dark class before CSS loads -->
     <script>
         (function () {
@@ -26,10 +26,9 @@
         class="bg-white dark:bg-dark-surface shadow-md dark:shadow-dark-border/20 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-5">
             <div class="flex justify-between items-center py-4">
-                <a href="<?php echo home_url(); ?>"
+                <a href="<?php echo esc_url(home_url()); ?>"
                     class="flex items-center hover:opacity-80 transition-opacity duration-300">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/01_STAIR_Logo_original.png"
-                        alt="STAIR Logo" class="h-12 w-auto object-contain">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . "/assets/01_STAIR_Logo_original.png"); ?>" alt="STAIR Logo" class="h-12 w-auto object-contain">
                 </a>
 
                 <div class="flex items-center gap-4">
