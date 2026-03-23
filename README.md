@@ -79,6 +79,24 @@ If you somehow need to deploy manually (e.g. fallback to an older version), foll
 | `bun run build:css` | Build CSS only                            |
 | `bun run watch:css` | Watch CSS only                            |
 
+
+## Code Quality
+
+### Linting & Formatting
+
+| Command              | Description                                                       |
+| -------------------- |-------------------------------------------------------------------|
+| `bun run lint`       | Check PHP and Wordpress security and compatibility issues (phpcs) |
+| `bun run format`     | Shows PHP code style issues (php-cs-fixer dry-run)                |
+| `bun run format:fix` | Fix PHP code style issues (php-cs-fixer)                          |
+
+PHP linting uses [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) configured in `phpcs.xml`.  
+PHP formatting uses [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) configured in `.php-cs-fixer.dist.php`.
+
+### CI
+
+Every push and pull request to `main` runs the [check workflow](./.github/workflows/check.yml), which verifies lint and format. The [deploy workflow](./.github/workflows/deploy.yml) additionally requires both checks to pass before deploying.
+
 ## Development Notes
 
 ### Adding New Required Plugins
