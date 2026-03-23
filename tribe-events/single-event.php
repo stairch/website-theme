@@ -159,48 +159,50 @@ get_header();
                             </div>
                         <?php endif; ?>
 
-                        <?php if ($has_organizer): ?>
-                            <!-- Organizer Card -->
-                            <div
-                                class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-8 border border-gray-100 dark:border-dark-border">
+                        <?php if ($has_organizer) : ?>
+                            <!-- Organizers Card -->
+                            <div class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-8 border border-gray-100 dark:border-dark-border">
                                 <h3 class="text-xl font-bold mb-6 text-text-dark dark:text-dark-text flex items-center">
                                     <i data-lucide="user" class="w-6 h-6 mr-3 text-primary"></i>
                                     <?php esc_html_e('Organizer', 'the-events-calendar'); ?>
                                 </h3>
-                                <div class="space-y-4">
-                                    <div class="font-bold text-text-dark dark:text-dark-text text-lg">
-                                        <?php echo esc_html(tribe_get_organizer()); ?>
-                                    </div>
-                                    <div class="flex flex-col gap-3">
-                                        <?php
-                                        $phone = tribe_get_organizer_phone();
-                                        $email = tribe_get_organizer_email();
-                                        $website = tribe_get_organizer_website_link();
-                                        ?>
-                                        <?php if ($phone): ?>
-                                            <div
-                                                class="flex items-center text-sm text-gray-600 dark:text-dark-text-muted font-medium">
-                                                <i data-lucide="phone" class="w-4 h-4 mr-3 opacity-70"></i>
-                                                <?php echo esc_html($phone); ?>
+                                <div class="grid gap-6">
+                                    <?php foreach (array_reverse(tribe_get_organizers(args: ['event' => $event_id])) as $organizer): ?>
+                                        <?php $organizer_id = $organizer->ID; ?>
+                                        <div>
+                                            <div class="font-bold text-text-dark dark:text-dark-text text-lg mb-2">
+                                                <?php echo esc_html(tribe_get_organizer($organizer_id)); ?>
                                             </div>
-                                        <?php endif; ?>
-                                        <?php if ($email): ?>
-                                            <div
-                                                class="flex items-center text-sm text-gray-600 dark:text-dark-text-muted font-medium">
-                                                <i data-lucide="mail" class="w-4 h-4 mr-3 opacity-70"></i>
-                                                <?php echo esc_html($email); ?>
+                                            <div class="flex flex-col gap-2">
+                                                <?php
+                                                $phone = tribe_get_organizer_phone($organizer_id);
+                                                $email = tribe_get_organizer_email($organizer_id);
+                                                $website_url = tribe_get_organizer_website_url($organizer_id);
+                                                ?>
+                                                <?php if ($website_url): ?>
+                                                    <a class="flex items-center text-sm text-gray-600 dark:text-dark-text-muted font-medium" href="<?php echo esc_url($website_url)?>" target="_blank">
+                                                        <i data-lucide="link" class="w-4 h-4 mr-3 opacity-70"></i>
+                                                        <?php echo esc_html(normalize_url($website_url)); ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if ($email): ?>
+                                                    <a class="flex items-center text-sm text-gray-600 dark:text-dark-text-muted font-medium" href="<?php echo esc_url('mailto:' . $email) ?>">
+                                                        <i data-lucide="mail" class="w-4 h-4 mr-3 opacity-70"></i>
+                                                        <?php echo esc_html($email); ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if ($phone): ?>
+                                                    <a class="flex items-center text-sm text-gray-600 dark:text-dark-text-muted font-medium">
+                                                        <i data-lucide="phone" class="w-4 h-4 mr-3 opacity-70"></i>
+                                                        <?php echo esc_html($phone); ?>
+                                                    </a>
+                                                <?php endif; ?>
                                             </div>
-                                        <?php endif; ?>
-                                        <?php if ($website): ?>
-                                            <div class="text-sm pt-1">
-                                                <?php echo wp_kses_post($website); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
-
                     </div>
                 </div>
             </div>

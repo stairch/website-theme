@@ -30,6 +30,9 @@ require get_template_directory() . '/inc/dummy-content.php';
 // Customizer settings
 require get_template_directory() . '/inc/customizer.php';
 
+// Helper functions
+require_once get_template_directory() . '/inc/helpers.php';
+
 /**
  * Disable Contact Form 7 Auto Paragraph
  * This prevents CF7 from wrapping fields in <p> tags, which breaks the grid layout.
