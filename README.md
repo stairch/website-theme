@@ -57,7 +57,7 @@ bun run dev
 ### Production
 
 To deploy a new version of the theme, you need to create a tag following Semantic Versioning (e.g. `v1.1.0`).
-After that the [production deployment workflow](./.github/workflows/prod.deploy.yml) starts and automatically deploys
+After that the [production deployment workflow](./.github/workflows/deploy.yml) starts and automatically deploys
 it to the production server. Finally, activate the theme in WordPress Admin → Appearance → Themes.
 
 If you somehow need to deploy manually (e.g. fallback to an older version), follow these steps:
