@@ -5,7 +5,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png"
-        href="<?php echo esc_url(get_template_directory_uri() . "/assets/STAIR-Logo-transparent-150x150.png"); ?>">
+        href="<?php echo esc_url(get_template_directory_uri() . '/assets/STAIR-Logo-transparent-150x150.png'); ?>">
     <!-- Prevent flash of wrong theme by setting dark class before CSS loads -->
     <script>
         (function () {
@@ -28,7 +28,7 @@
             <div class="flex justify-between items-center py-4">
                 <a href="<?php echo esc_url(home_url()); ?>"
                     class="flex items-center hover:opacity-80 transition-opacity duration-300">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . "/assets/01_STAIR_Logo_original.png"); ?>" alt="STAIR Logo" class="h-12 w-auto object-contain">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/01_STAIR_Logo_original.png'); ?>" alt="STAIR Logo" class="h-12 w-auto object-contain">
                 </a>
 
                 <div class="flex items-center gap-4">
@@ -49,7 +49,7 @@
                             'theme_location' => 'main_menu',
                             'container' => false,
                             'menu_class' => 'nav-menu hidden md:flex list-none gap-8 items-center',
-                            'fallback_cb' => false // Don't show garbage if no menu is assigned yet
+                            'fallback_cb' => false, // Don't show garbage if no menu is assigned yet
                         ]);
                         ?>
                     </nav>

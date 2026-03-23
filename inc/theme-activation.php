@@ -202,7 +202,7 @@ function stair_create_navigation_menu() {
 function stair_create_default_categories() {
     $categories = [
         'News',
-        'Galerie'
+        'Galerie',
     ];
 
     foreach ($categories as $cat_name) {
@@ -362,7 +362,7 @@ function stair_create_default_contact_forms() {
                 'recipient' => get_option('admin_email'),
                 'additional_headers' => 'Reply-To: [your-email]',
             ],
-        ]
+        ],
     ];
 
     foreach ($forms as $key => $form_data) {

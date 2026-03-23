@@ -334,7 +334,7 @@ get_header();
                         // Find the page with the "Vergangene Events" template
                         $past_events_page = get_pages([
                             'meta_key' => '_wp_page_template',
-                            'meta_value' => 'templates/past-events.php'
+                            'meta_value' => 'templates/past-events.php',
                         ]);
                         $past_events_url = !empty($past_events_page) ? get_permalink($past_events_page[0]->ID) : '#';
                         ?>

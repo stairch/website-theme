@@ -8,7 +8,7 @@
             class="flex flex-col md:flex-row justify-between items-center md:items-center gap-8 text-center md:text-left">
             <div class="flex flex-col gap-4">
                 <a href="https://stair.ch" class="flex items-center hover:opacity-80 transition-opacity duration-300">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . "/assets/01_STAIR_Logo_original.png"); ?>"
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/01_STAIR_Logo_original.png'); ?>"
                         alt="STAIR Logo" class="h-10 w-auto object-contain">
                 </a>
                 <p class="text-text-lighter dark:text-dark-text-muted text-sm">© <span id="copyright-year">2016-today</span>
@@ -57,7 +57,7 @@
                     ?>
                     <a href="https://hslu.ch" target="_blank" rel="noopener noreferrer"
                         class="shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . "/assets/HSLU_2022_logo.svg"); ?>"
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/HSLU_2022_logo.svg'); ?>"
                             alt="HSLU Logo" class="h-8 w-auto">
                     </a>
                     <?php

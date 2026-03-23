@@ -11,8 +11,8 @@
 get_header();
 // Default values
 $default_hours_text = "Dienstag: 17:00 – 19:00\nDonnerstag: 15:00 – 19:00\nFreitag: 15:00 – 19:00";
-$default_subtitle = "Dein Treffpunkt an der HSLU";
-$default_description = "Die Docker Bar wird von Student:innen und Mitarbeiter:innen der HSLU geführt. Unser Ziel ist es, die Bar während den Unterrichtswochen zu betreiben, exklusive Feiertage.";
+$default_subtitle = 'Dein Treffpunkt an der HSLU';
+$default_description = 'Die Docker Bar wird von Student:innen und Mitarbeiter:innen der HSLU geführt. Unser Ziel ist es, die Bar während den Unterrichtswochen zu betreiben, exklusive Feiertage.';
 
 // Get ACF fields if available, otherwise use defaults
 $subtitle = function_exists('get_field') && get_field('docker_bar_subtitle')
@@ -64,7 +64,7 @@ $application_url = function_exists('get_field') && get_field('application_url')
 
 <!-- Hero Section -->
 <section class="hero relative h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center text-white"
-    style="background-image: url(<?php echo esc_url(get_template_directory_uri() . "/assets/dockerbar.jpg"); ?>);">
+    style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/assets/dockerbar.jpg'); ?>);">
     <div class="hero-overlay absolute inset-0 bg-black/50"></div>
     <div class="hero-content relative z-10 max-w-4xl px-5">
         <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg"><?php the_title(); ?></h1>

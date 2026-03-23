@@ -69,7 +69,6 @@ function stair_generate_dummy_content() {
         }
     }
 
-
     // Generate Events (Tribe Events)
     if (class_exists('Tribe__Events__Main')) {
         echo '<h2>Events:</h2>';
