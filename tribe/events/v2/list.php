@@ -3,7 +3,7 @@
  * List View Template
  *
  * A custom template for The Events Calendar list view.
- * 
+ *
  * Override this template in your own theme by creating a file at [your-theme]/tribe-events/list.php
  *
  * @package TribeEventsCalendar
@@ -14,10 +14,10 @@ if (!defined('ABSPATH')) {
     die('-1');
 }
 
-use Tribe\Events\Views\V2\View;
 use Tribe\Events\Views\V2\iCalendar\Links\Google_Calendar;
 use Tribe\Events\Views\V2\iCalendar\Links\Outlook_365;
 use Tribe\Events\Views\V2\iCalendar\Links\Outlook_Live;
+use Tribe\Events\Views\V2\View;
 
 get_header();
 ?>
@@ -36,20 +36,20 @@ get_header();
             <?php
             // Custom Queries to replicate the logic from the custom page template
             // Note: We are ignoring the global query to enforce this specific layout
-        
-            $upcoming_events = tribe_get_events(array(
+
+            $upcoming_events = tribe_get_events([
                 'posts_per_page' => -1,
                 'start_date' => 'now',
                 'orderby' => 'event_date',
                 'order' => 'ASC',
-            ));
+            ]);
 
-            $past_events = tribe_get_events(array(
+            $past_events = tribe_get_events([
                 'posts_per_page' => 3,
                 'end_date' => 'now',
                 'orderby' => 'event_date',
                 'order' => 'DESC',
-            ));
+            ]);
             ?>
 
             <!-- Upcoming Events -->
@@ -93,7 +93,7 @@ get_header();
                                         $ical_link = tribe_get_ical_link();
 
                                         // iCalendar (webcal)
-                                        $webcal_link = str_replace(array('http://', 'https://'), 'webcal://', $ical_link);
+                                        $webcal_link = str_replace(['http://', 'https://'], 'webcal://', $ical_link);
 
                                         // outlook .ics (append outlook-ical=1)
                                         $separator = (strpos($ical_link, '?') === false) ? '?' : '&';
@@ -103,7 +103,7 @@ get_header();
                                         // fallback if something goes wrong
                                         $ical_link = tribe_get_ical_link();
                                         $google_link = 'https://www.google.com/calendar/render?cid=' . urlencode($ical_link);
-                                        $webcal_link = str_replace(array('http://', 'https://'), 'webcal://', $ical_link);
+                                        $webcal_link = str_replace(['http://', 'https://'], 'webcal://', $ical_link);
                                         $outlook_365_link = '#'; // disable or hide if failed
                                         $outlook_live_link = '#';
                                         $outlook_ical_link = $ical_link;
@@ -239,9 +239,9 @@ get_header();
                                     <div
                                         class="bg-primary text-white p-6 md:w-40 shrink-0 flex flex-col items-center justify-center text-center">
                                         <span
-                                            class="text-3xl font-bold"><?php echo tribe_get_start_date($event_id, false, 'd'); ?></span>
+                                            class="text-3xl font-bold"><?php echo esc_html(tribe_get_start_date($event_id, false, 'd')); ?></span>
                                         <span
-                                            class="text-sm uppercase tracking-wider"><?php echo tribe_get_start_date($event_id, false, 'M Y'); ?></span>
+                                            class="text-sm uppercase tracking-wider"><?php echo esc_html(tribe_get_start_date($event_id, false, 'M Y')); ?></span>
                                     </div>
 
                                     <!-- Event Details -->
@@ -267,7 +267,7 @@ get_header();
                                         </div>
 
                                         <p class="text-text-light dark:text-dark-text-muted line-clamp-2">
-                                            <?php echo wp_trim_words($event->post_content, 30); ?>
+                                            <?php echo esc_html(wp_trim_words(wp_strip_all_tags($event->post_content), 30)); ?>
                                         </p>
                                     </div>
 
@@ -330,12 +330,12 @@ get_header();
                     </div>
                     
                     <div class="mt-8 text-center">
-                        <?php 
+                        <?php
                         // Find the page with the "Vergangene Events" template
-                        $past_events_page = get_pages(array(
+                        $past_events_page = get_pages([
                             'meta_key' => '_wp_page_template',
-                            'meta_value' => 'templates/past-events.php'
-                        ));
+                            'meta_value' => 'templates/past-events.php',
+                        ]);
                         $past_events_url = !empty($past_events_page) ? get_permalink($past_events_page[0]->ID) : '#';
                         ?>
                         <a href="<?php echo esc_url($past_events_url); ?>" 

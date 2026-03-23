@@ -16,12 +16,12 @@
 
                 <?php if (function_exists('tribe_get_events')): ?>
                     <?php
-                    $upcoming_events = tribe_get_events(array(
+                    $upcoming_events = tribe_get_events([
                         'posts_per_page' => 3,
                         'start_date' => 'now',
                         'orderby' => 'event_date',
                         'order' => 'ASC',
-                    ));
+                    ]);
                     ?>
 
                     <?php if (!empty($upcoming_events)): ?>
@@ -39,9 +39,9 @@
                                     <div class="flex gap-4">
                                         <div class="bg-primary text-white rounded-lg px-3 py-2 text-center shrink-0">
                                             <span
-                                                class="block text-xl font-bold leading-tight"><?php echo tribe_get_start_date($event_id, false, 'd'); ?></span>
+                                                class="block text-xl font-bold leading-tight"><?php echo esc_html(tribe_get_start_date($event_id, false, 'd')); ?></span>
                                             <span
-                                                class="block text-xs uppercase"><?php echo tribe_get_start_date($event_id, false, 'M'); ?></span>
+                                                class="block text-xs uppercase"><?php echo esc_html(tribe_get_start_date($event_id, false, 'M')); ?></span>
                                         </div>
                                         <div class="grow min-w-0">
                                             <h4 class="font-semibold text-text-dark dark:text-dark-text truncate">
@@ -88,10 +88,10 @@
                 </h3>
 
                 <?php
-                $args = array(
+                $args = [
                     'posts_per_page' => 3,
                     'post_status' => 'publish',
-                );
+                ];
                 $query = new WP_Query($args);
                 ?>
 
@@ -107,13 +107,13 @@
                                         <?php
                                         $has_image = false;
                                         if (has_post_thumbnail()) {
-                                            the_post_thumbnail('thumbnail', array('class' => 'w-full h-full object-cover'));
+                                            the_post_thumbnail('thumbnail', ['class' => 'w-full h-full object-cover']);
                                             $has_image = true;
                                         } else {
                                             // try to find first image in content
                                             $content = get_the_content();
                                             if (preg_match('/<img[^>]+src="([^">]+)"/', $content, $matches)) {
-                                                echo '<img src="' . esc_url($matches[1]) . '" class="w-full h-full object-cover" alt="' . get_the_title() . '">';
+                                                echo '<img src="' . esc_url($matches[1]) . '" class="w-full h-full object-cover" alt="' . esc_attr(get_the_title()) . '">';
                                                 $has_image = true;
                                             }
                                         }

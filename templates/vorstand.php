@@ -64,7 +64,7 @@ get_header();
 
         <!-- Former Members Link -->
         <div class="mt-12 text-center">
-            <a href="<?php echo home_url('/ahnengalerie'); ?>"
+            <a href="<?php echo esc_url(home_url('/ahnengalerie')); ?>"
                 class="inline-flex items-center text-text-light dark:text-dark-text-muted hover:text-primary dark:hover:text-primary transition-colors font-medium hover:underline decoration-2 underline-offset-4">
                 <i data-lucide="history" class="w-4 h-4 mr-2"></i>
                 Zu den ehemaligen Mitgliedern
@@ -75,7 +75,7 @@ get_header();
         <div class="mt-20 text-center">
             <p class="text-text-light dark:text-dark-text-muted text-lg">
                 Du möchtest auch Teil von STAIR werden?
-                <a href="<?php echo home_url('/bewerbung'); ?>"
+                <a href="<?php echo esc_url(home_url('/bewerbung')); ?>"
                     class="text-primary hover:text-primary-dark font-medium inline-flex items-center transition-colors group">
                     Hier bewerben <i data-lucide="arrow-right"
                         class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"></i>

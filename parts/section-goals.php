@@ -1,3 +1,5 @@
+<?php // phpcs:ignoreFile -- Static HTML template part.?>
+
     <!-- Unsere Ziele Section -->
     <section class="py-20 bg-white dark:bg-dark-surface transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-5">

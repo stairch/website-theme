@@ -1,10 +1,10 @@
 <?php
 /**
  * Template Name: Vergangene Events
- * 
+ *
  * Displays all past events in a grid layout.
  * Create a page and select this template to display all past events.
- * 
+ *
  * @package STAIR
  */
 
@@ -17,7 +17,7 @@ get_header();
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-text-dark dark:text-dark-text mb-4"><?php the_title(); ?></h1>
             <div class="text-lg text-text-light dark:text-dark-text-muted max-w-2xl mx-auto mb-8">
-                <?php 
+                <?php
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();
@@ -40,20 +40,20 @@ get_header();
         <?php if (function_exists('tribe_get_events')): ?>
             <?php
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            
-            $past_events = tribe_get_events(array(
+
+            $past_events = tribe_get_events([
                 'posts_per_page' => 12,
                 'end_date' => 'now',
                 'orderby' => 'event_date',
                 'order' => 'DESC',
                 'paged' => $paged,
-            ));
+            ]);
 
-            $total_past_events = tribe_get_events(array(
+            $total_past_events = tribe_get_events([
                 'posts_per_page' => -1,
                 'end_date' => 'now',
                 'fields' => 'ids',
-            ));
+            ]);
             $total_count = count($total_past_events);
             $total_pages = ceil($total_count / 12);
             ?>
@@ -96,7 +96,7 @@ get_header();
                                     </div>
                                     
                                     <p class="text-text-light dark:text-dark-text-muted text-sm line-clamp-2">
-                                        <?php echo wp_trim_words($event->post_content, 20); ?>
+                                        <?php echo esc_html(wp_trim_words(wp_strip_all_tags($event->post_content), 20)); ?>
                                     </p>
                                 </div>
                             </article>
@@ -118,12 +118,12 @@ get_header();
                                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                                     <?php if ($i == $paged): ?>
                                         <span class="px-4 py-2 bg-primary text-white rounded-lg font-semibold">
-                                            <?php echo $i; ?>
+                                            <?php echo esc_html((string) $i); ?>
                                         </span>
                                     <?php else: ?>
                                         <a href="<?php echo esc_url(get_pagenum_link($i)); ?>"
                                             class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-text-dark dark:text-dark-text hover:bg-gray-50 dark:hover:bg-dark-bg transition-colors">
-                                            <?php echo $i; ?>
+                                            <?php echo esc_html((string) $i); ?>
                                         </a>
                                     <?php endif; ?>
                                 <?php endfor; ?>

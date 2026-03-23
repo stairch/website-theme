@@ -14,27 +14,27 @@
 <?php else: ?>
     <?php
     // Check if a page with 404 template exists
-    $error_page = get_pages(array(
+    $error_page = get_pages([
         'meta_key' => '_wp_page_template',
         'meta_value' => '404.php',
         'number' => 1,
-    ));
-    
+    ]);
+
     if (empty($error_page)) {
-        $error_page = get_pages(array(
+        $error_page = get_pages([
             'meta_key' => '_wp_page_template',
             'meta_value' => 'templates/404.php',
             'number' => 1,
-        ));
+        ]);
     }
-    
+
     if (!empty($error_page)) {
         // Display custom 404 page using its template
         $page = $error_page[0];
         global $post;
         $post = $page;
         setup_postdata($post);
-        
+
         $template_file = get_page_template_slug($page->ID);
         if ($template_file && file_exists(get_template_directory() . '/' . $template_file)) {
             include(get_template_directory() . '/' . $template_file);
@@ -44,7 +44,7 @@
         }
         wp_reset_postdata();
     }
-    
+
     // Default 404 message
     ?>
     <main class="max-w-6xl mx-auto px-5 py-20 grow w-full">

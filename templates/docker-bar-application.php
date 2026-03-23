@@ -1,11 +1,11 @@
 <?php
 /**
  * Template Name: Docker Bar Application
- * 
+ *
  * Docker Bar Application page template with 2-column layout.
  * Left: Content (Text)
  * Right: Contact Form 7 (assumes form title is "Docker Bar Application")
- * 
+ *
  * @package STAIR
  */
 

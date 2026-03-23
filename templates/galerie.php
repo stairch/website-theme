@@ -1,10 +1,10 @@
 <?php
 /**
  * Template Name: Galerie
- * 
+ *
  * Gallery page for event photos.
  * Future implementation: Display posts/galleries per event with images.
- * 
+ *
  * @package STAIR
  */
 
@@ -31,10 +31,10 @@ get_header();
         </div>
 
         <?php
-        $args = array(
+        $args = [
             'category_name' => 'galerie',
             'posts_per_page' => 12,
-        );
+        ];
         $gallery_query = new WP_Query($args);
 
         if ($gallery_query->have_posts()): ?>
@@ -43,7 +43,7 @@ get_header();
                     $gallery_query->the_post();
                     // extract images from content
                     $content = get_the_content();
-                    $preview_images = array();
+                    $preview_images = [];
 
                     // match image URLs from wp:image blocks or standard img tags
                     if (preg_match_all('/<img[^>]+src="([^">]+)"/', $content, $matches)) {
@@ -92,12 +92,12 @@ get_header();
 
             <div class="mt-12 flex justify-center flex-wrap gap-2">
                 <?php
-                $links = paginate_links(array(
+                $links = paginate_links([
                     'total' => $gallery_query->max_num_pages,
                     'prev_text' => '<i data-lucide="chevron-left" class="w-5 h-5"></i>',
                     'next_text' => '<i data-lucide="chevron-right" class="w-5 h-5"></i>',
                     'type' => 'array',
-                ));
+                ]);
 
                 if ($links) {
                     foreach ($links as $link) {
@@ -106,7 +106,7 @@ get_header();
                         } else {
                             $link = str_replace('page-numbers', 'px-4 py-2 bg-white dark:bg-dark-surface text-text-light dark:text-dark-text border border-gray-200 dark:border-dark-border rounded-lg hover:bg-gray-50 dark:hover:bg-dark-border/50 hover:text-primary dark:hover:text-primary transition-all duration-200 flex items-center justify-center min-w-[40px] shadow-sm', $link);
                         }
-                        echo $link;
+                        echo wp_kses_post($link);
                     }
                 }
                 ?>

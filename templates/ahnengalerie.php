@@ -36,8 +36,7 @@ get_header();
                 'posts_per_page' => -1,
         ]);
 
-        function semester_value($sem)
-        {
+        function semester_value($sem) {
             // 'HS' or 'FS'
             $type = substr($sem, 0, 2);
             $year = (int) substr($sem, 2);
@@ -95,7 +94,7 @@ get_header();
 
         <!-- Back Link -->
         <div class="mt-20 text-center">
-            <a href="<?php echo home_url('/vorstand'); ?>"
+            <a href="<?php echo esc_url(home_url('/vorstand')); ?>"
                 class="text-primary hover:text-primary-dark font-medium inline-flex items-center transition-colors group">
                 <i data-lucide="arrow-left" class="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform"></i>
                 Zurück zum Vorstand
