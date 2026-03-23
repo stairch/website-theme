@@ -12,7 +12,8 @@
     "dev": "bun run watch:css",
     "lint": "vendor/bin/phpcs . --standard=phpcs.xml",
     "format": "vendor/bin/php-cs-fixer fix . --config=.php-cs-fixer.dist.php --dry-run",
-    "format:fix": "vendor/bin/php-cs-fixer fix . --config=.php-cs-fixer.dist.php"
+    "format:fix": "vendor/bin/php-cs-fixer fix . --config=.php-cs-fixer.dist.php",
+    "check:fix": "bun run format:fix && bun run lint"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
