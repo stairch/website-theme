@@ -37,7 +37,7 @@ $has_content = !empty(trim(get_post()->post_content));
                 <!-- Left Column: Content & Intro -->
                 <div class="lg:col-span-6 lg:sticky lg:top-24">
                     <div
-                        class="bg-white dark:bg-dark-surface w-full rounded-lg shadow-md overflow-hidden border border-border-color dark:border-dark-border p-8 md:p-10 transition-colors duration-300">
+                        class="bg-white dark:bg-dark-surface w-full rounded-lg shadow-md overflow-hidden border border-border-color dark:border-dark-border p-6 sm:p-8 md:p-10 transition-colors duration-300">
 
                         <div class="prose prose-lg text-text-light dark:text-dark-text-muted dark:prose-invert">
                             <?php
@@ -57,7 +57,7 @@ $has_content = !empty(trim(get_post()->post_content));
             <!-- Right Column: Application Form -->
             <div class="<?php echo $has_content ? 'lg:col-span-6' : 'lg:col-span-12'; ?>">
                 <div
-                    class="bg-white dark:bg-dark-surface w-full rounded-lg shadow-md overflow-hidden border border-border-color dark:border-dark-border p-8 md:p-10 transition-colors duration-300">
+                    class="bg-white dark:bg-dark-surface w-full rounded-lg shadow-md overflow-hidden border border-border-color dark:border-dark-border p-6 sm:p-8 md:p-10 transition-colors duration-300">
                     <?php
                     // check if CF7 is active
                     if (shortcode_exists('contact-form-7')) {

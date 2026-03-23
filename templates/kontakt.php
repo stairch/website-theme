@@ -45,7 +45,7 @@ get_header();
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Contact Form -->
             <div class="lg:col-span-2">
-                <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-8 transition-colors duration-300">
+                <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-6 sm:p-8 transition-colors duration-300">
                     <h2 class="text-2xl font-bold text-text-dark dark:text-dark-text mb-6">Schreib uns</h2>
 
                     <?php

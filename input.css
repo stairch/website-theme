@@ -30,6 +30,8 @@ Tested up to: 6.9
     --color-dark-border: #333333;
 
     --font-sans: "Poppins", sans-serif;
+
+    --text-4p5xl: 2.625rem;   /* 42px */
 }
 
 html {

@@ -30,7 +30,7 @@ get_header();
 
             <!-- Header Section -->
             <div
-                class="bg-gray-50/50 dark:bg-dark-surface border-b border-gray-100 dark:border-dark-border p-8 md:p-12">
+                class="bg-gray-50/50 dark:bg-dark-surface border-b border-gray-100 dark:border-dark-border p-6 sm:p-8 md:p-12">
                 <div class="max-w-4xl">
                     <!-- Navigation Back Link -->
                     <a href="<?php echo esc_url(tribe_get_events_link()); ?>"
@@ -66,7 +66,7 @@ get_header();
             </div>
 
             <!-- Content Grid Section -->
-            <div class="p-8 md:p-12">
+            <div class="p-6 sm:p-8 md:p-12">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
                     <!-- Left Column: Content (7 cols) -->
@@ -81,7 +81,7 @@ get_header();
 
                         <!-- Date & Time Card -->
                         <div
-                            class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-8 border border-gray-100 dark:border-dark-border">
+                            class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-dark-border">
                             <h3 class="text-xl font-bold mb-6 text-text-dark dark:text-dark-text flex items-center">
                                 <i data-lucide="clock" class="w-6 h-6 mr-3 text-primary"></i>
                                 <?php esc_html_e('Date & Time', 'the-events-calendar'); ?>
@@ -130,8 +130,8 @@ get_header();
                         <?php if ($has_venue): ?>
                             <!-- Venue Card -->
                             <div
-                                class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-8 border border-gray-100 dark:border-dark-border">
-                                <h3 class="text-xl font-bold mb-6 text-text-dark dark:text-dark-text flex items-center">
+                                class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-dark-border">
+                                <h3 class="text-xl font-bold mb-6 text-text-dark dark:text-dark-text flex items-center break-words hyphens-auto" lang="de">
                                     <i data-lucide="map-pin" class="w-6 h-6 mr-3 text-primary"></i>
                                     <?php esc_html_e('Venue', 'the-events-calendar'); ?>
                                 </h3>
@@ -161,7 +161,7 @@ get_header();
 
                         <?php if ($has_organizer) : ?>
                             <!-- Organizers Card -->
-                            <div class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-8 border border-gray-100 dark:border-dark-border">
+                            <div class="bg-gray-50 dark:bg-dark-bg/50 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-dark-border">
                                 <h3 class="text-xl font-bold mb-6 text-text-dark dark:text-dark-text flex items-center">
                                     <i data-lucide="user" class="w-6 h-6 mr-3 text-primary"></i>
                                     <?php esc_html_e('Organizer', 'the-events-calendar'); ?>
