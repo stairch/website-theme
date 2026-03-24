@@ -20,7 +20,7 @@ get_header();
             <!-- Overlay for background image -->
             <div class="absolute top-0 bottom-0 w-[1500px] max-w-full left-1/2 -translate-x-1/2 bg-black/50"></div>
 
-            <div class="hero-content relative z-10 max-w-4xl px-5 bg-white/5 py-5 px-10 rounded-lg backdrop-blur-xs">
+            <div class="relative z-10 max-w-4xl px-5 bg-white/5 py-5 px-10 rounded-lg backdrop-blur-xs">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg"><?php the_title(); ?></h1>
                 <p class="text-lg text-text-light dark:text-dark-text-muted max-w-2xl mx-auto">
                     <?php
