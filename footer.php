@@ -5,27 +5,30 @@
     class="bg-text-dark dark:bg-dark-surface text-white py-12 transition-colors duration-300 dark:border-t dark:border-dark-border">
     <div class="max-w-6xl mx-auto px-5">
         <div
-            class="flex flex-col md:flex-row justify-between items-center md:items-center gap-8 text-center md:text-left">
+            class="flex flex-col md:flex-row justify-between md:items-center gap-12 md:text-left">
             <div class="flex flex-col gap-4">
                 <a href="https://stair.ch" class="flex items-center hover:opacity-80 transition-opacity duration-300">
                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/01_STAIR_Logo_original.png'); ?>"
                         alt="STAIR Logo" class="h-10 w-auto object-contain">
                 </a>
                 <p class="text-text-lighter dark:text-dark-text-muted text-sm">© <span id="copyright-year">2016-today</span>
-                    STAIR. Alle Rechte vorbehalten. <?php
+                    STAIR. Alle Rechte vorbehalten.
+                </p>
+                <div class="flex gap-2 text-text-lighter dark:text-dark-text-muted text-sm">
+                    <?php
                     $impressum = get_page_by_path('impressum');
                     if ($impressum): ?>
                         <a href="<?php echo esc_url(get_permalink($impressum->ID)); ?>"
-                            class="ml-2 underline hover:opacity-80 transition-opacity duration-300">Impressum</a>
+                           class="underline hover:opacity-80 transition-opacity duration-300">Impressum</a>
                     <?php endif; ?> <?php
                     $informationen = get_page_by_path('informationen');
                     if ($informationen): ?>
                         <a href="<?php echo esc_url(get_permalink($informationen->ID)); ?>"
-                            class="ml-2 underline hover:opacity-80 transition-opacity duration-300">Informationen</a>
+                           class="underline hover:opacity-80 transition-opacity duration-300">Informationen</a>
                     <?php endif; ?>
-                </p>
+                </div>
             </div>
-            <div class="flex flex-col items-center md:items-end gap-2">
+            <div class="flex flex-col md:items-end gap-2">
                 <p class="text-text-lighter dark:text-dark-text-muted text-sm">Mit Unterstützung von:</p>
                 <?php
                 // Fetch all sponsors
