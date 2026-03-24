@@ -103,13 +103,18 @@ html {
 }
 
 .wpcf7-form label {
-    @apply block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2;
+    @apply block text-sm text-gray-500;
     @apply dark:text-dark-text-muted;
+}
+
+.wpcf7-form label span:first-child {
+    @apply block text-sm mb-2 uppercase font-semibold tracking-wider;
 }
 
 .wpcf7-form input[type="text"],
 .wpcf7-form input[type="email"],
 .wpcf7-form input[type="number"],
+.wpcf7-form input[type="tel"],
 .wpcf7-form textarea {
     @apply w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-700 placeholder-gray-400 transition-all duration-200;
     @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white;
@@ -134,6 +139,10 @@ html {
 }
 
 /* Radio buttons */
+.wpcf7-vertical-radio-wrapper {
+    @apply flex items-center sm:mt-3;
+}
+
 .wpcf7-form .wpcf7-radio {
     @apply flex flex-wrap gap-6;
 }
@@ -148,7 +157,7 @@ html {
 
 .wpcf7-list-item input[type="radio"],
 .wpcf7-list-item input[type="checkbox"] {
-    @apply appearance-none w-5 h-5 border-2 border-gray-300 rounded-full transition-all;
+    @apply appearance-none w-5 h-5 border-2 border-gray-300 transition-all hover:cursor-pointer;
     @apply checked:border-primary checked:bg-primary;
     @apply focus:ring-2 focus:ring-primary/20 focus:ring-offset-0;
     @apply dark:border-dark-border dark:bg-dark-bg;
@@ -156,6 +165,14 @@ html {
     background-position: center;
     background-size: 0;
     background-repeat: no-repeat;
+}
+
+.wpcf7-list-item input[type="radio"] {
+    @apply rounded-full;
+}
+
+.wpcf7-list-item input[type="checkbox"] {
+    @apply rounded-sm;
 }
 
 .wpcf7-list-item input[type="radio"]:checked,
