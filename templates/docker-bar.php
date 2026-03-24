@@ -66,7 +66,7 @@ $application_url = function_exists('get_field') && get_field('application_url')
 <section class="hero relative h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center text-white px-5"
     style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/assets/dockerbar.jpg'); ?>);">
     <div class="hero-overlay absolute inset-0 bg-black/50"></div>
-    <div class="hero-content relative z-10 max-w-4xl px-5 px-5 bg-white/5 py-5 px-10 rounded-lg backdrop-blur-xs">
+    <div class="hero-content relative z-10 max-w-4xl px-5 px-5 bg-white/5 py-5 px-10 w-xl rounded-lg backdrop-blur-xs">
         <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg"><?php the_title(); ?></h1>
         <p class="text-xl drop-shadow-md"><?php echo esc_html($subtitle); ?></p>
     </div>
