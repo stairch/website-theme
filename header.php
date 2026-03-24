@@ -35,7 +35,7 @@
 
                     <nav class="nav">
                         <button
-                            class="mobile-menu-toggle md:hidden flex items-center justify-center bg-transparent border-none cursor-pointer p-3 -mr-2 z-50 relative"
+                            class="mobile-menu-toggle lg:hidden flex items-center justify-center bg-transparent border-none cursor-pointer p-3 -mr-2 z-50 relative"
                             aria-label="Toggle menu"
                             aria-expanded="false">
                             <i data-lucide="menu"
@@ -48,7 +48,7 @@
                         wp_nav_menu([
                             'theme_location' => 'main_menu',
                             'container' => false,
-                            'menu_class' => 'nav-menu hidden md:flex list-none gap-8 items-center',
+                            'menu_class' => 'nav-menu hidden lg:flex list-none gap-8 items-center',
                             'fallback_cb' => false, // Don't show garbage if no menu is assigned yet
                         ]);
                         ?>
