@@ -18,7 +18,7 @@ get_header();
              style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/assets/vorstand.jpg'); ?>); background-size: 1500px;">
 
             <!-- Overlay for background image -->
-            <div class="absolute top-0 bottom-0 w-[1500px] max-w-full left-1/2 -translate-x-1/2 bg-black/50"></div>
+            <div class="absolute top-0 bottom-0 w-[1500px] max-w-full left-1/2 -translate-x-1/2 bg-black/40"></div>
 
             <div class="relative z-10 max-w-4xl px-5 bg-white/5 py-5 px-10 rounded-lg backdrop-blur-xs">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg"><?php the_title(); ?></h1>
