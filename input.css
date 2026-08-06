@@ -11,52 +11,50 @@ Tested up to: 6.9
 @plugin "@tailwindcss/typography";
 
 /* Safe List: prevents that those classes being purged for optimization, so we can use it in CMS */
-@source inline("{bg,text,border}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
-@source inline("{ring,outline,shadow,fill,stroke}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
-/* gradient */
-@source inline("{from,via,to}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
-/* hover, focus */
-@source inline("{hover:,focus:,}{bg,text,border}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
-/* responsive design */
 @source inline("{sm:,md:,lg:,xl:,}{bg,text,border}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
+@source inline("{sm:,md:,lg:,xl:,}{ring,outline,shadow,fill,stroke}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
+/* gradient */
+@source inline("{sm:,md:,lg:,xl:,}{from,via,to}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
+/* hover, focus */
+@source inline("{sm:,md:,lg:,xl:,}{hover:,focus:,}{bg,text,border}-{neutral,red,orange,amber,yellow,green,blue,purple,pink}-{50,{100..900..100},950}");
 /* margin, padding */
-@source inline("{m,p}{x,y,t,r,b,l,}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96}");
+@source inline("{sm:,md:,lg:,xl:,}{m,p}{x,y,t,r,b,l,}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96}");
 /* width, height */
-@source inline("{w,h,min-w,min-h,max-w,max-h}-{0,auto,full,screen,min,max,fit,px,0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96}");
+@source inline("{sm:,md:,lg:,xl:,}{w,h,min-w,min-h,max-w,max-h}-{0,auto,full,screen,min,max,fit,px,0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96}");
 /* display and flex options */
-@source inline("{block,inline-block,inline,hidden,grid,inline-grid,contents,list-item}");
-@source inline("{flex,inline-flex,flex-col,flex-row,flex-wrap,flex-nowrap,flex-1,flex-auto,flex-none}");
-@source inline("{items,justify,self,place}-{start,end,center,between,around,evenly,stretch,baseline}");
-@source inline("{gap,gap-x,gap-y}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24}");
+@source inline("{sm:,md:,lg:,xl:,}{block,inline-block,inline,hidden,grid,inline-grid,contents,list-item}");
+@source inline("{sm:,md:,lg:,xl:,}{flex,inline-flex,flex-col,flex-row,flex-wrap,flex-nowrap,flex-1,flex-auto,flex-none}");
+@source inline("{sm:,md:,lg:,xl:,}{items,justify,self,place}-{start,end,center,between,around,evenly,stretch,baseline}");
+@source inline("{sm:,md:,lg:,xl:,}{gap,gap-x,gap-y}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24}");
 /* typography */
-@source inline("{font}-{thin,extralight,light,normal,medium,semibold,bold,extrabold,black}");
-@source inline("{text}-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl}");
-@source inline("{text}-{left,center,right,justify}");
-@source inline("{leading}-{none,tight,snug,normal,relaxed,loose,{3..10}}");
-@source inline("{tracking}-{tighter,tight,normal,wide,wider,widest}");
+@source inline("{sm:,md:,lg:,xl:,}{font}-{thin,extralight,light,normal,medium,semibold,bold,extrabold,black}");
+@source inline("{sm:,md:,lg:,xl:,}{text}-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl}");
+@source inline("{sm:,md:,lg:,xl:,}{text}-{left,center,right,justify}");
+@source inline("{sm:,md:,lg:,xl:,}{leading}-{none,tight,snug,normal,relaxed,loose,{3..10}}");
+@source inline("{sm:,md:,lg:,xl:,}{tracking}-{tighter,tight,normal,wide,wider,widest}");
 /* border */
-@source inline("{rounded,rounded-t,rounded-r,rounded-b,rounded-l,rounded-tl,rounded-tr,rounded-br,rounded-bl}-{none,sm,md,lg,xl,2xl,3xl,full}");
-@source inline("{border}-{0,2,4,8}");
+@source inline("{sm:,md:,lg:,xl:,}{rounded,rounded-t,rounded-r,rounded-b,rounded-l,rounded-tl,rounded-tr,rounded-br,rounded-bl}-{none,sm,md,lg,xl,2xl,3xl,full}");
+@source inline("{sm:,md:,lg:,xl:,}{border}-{0,2,4,8}");
 /* shadow */
-@source inline("{shadow}-{none,sm,md,lg,xl,2xl,inner}");
+@source inline("{sm:,md:,lg:,xl:,}{shadow}-{none,sm,md,lg,xl,2xl,inner}");
 /* transitions and animations */
-@source inline("{transition}-{none,all,colors,opacity,shadow,transform}");
-@source inline("{duration}-{75,100,150,200,300,500,700,1000}");
-@source inline("{ease}-{linear,in,out,in-out}");
+@source inline("{sm:,md:,lg:,xl:,}{transition}-{none,all,colors,opacity,shadow,transform}");
+@source inline("{sm:,md:,lg:,xl:,}{duration}-{75,100,150,200,300,500,700,1000}");
+@source inline("{sm:,md:,lg:,xl:,}{ease}-{linear,in,out,in-out}");
 /* transform */
-@source inline("{hover:,focus:,}{-translate-x,translate-x,translate-y,-translate-y}-{0,0.5,1,1.5,2,2.5,3,4,5,6,8,10,12,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96,full}");
-@source inline("{scale}-{0,50,75,90,95,100,105,110,125,150}");
+@source inline("{sm:,md:,lg:,xl:,}{hover:,focus:,}{-translate-x,translate-x,translate-y,-translate-y}-{0,0.5,1,1.5,2,2.5,3,4,5,6,8,10,12,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96,full}");
+@source inline("{sm:,md:,lg:,xl:,}{scale}-{0,50,75,90,95,100,105,110,125,150}");
 /* cursor */
-@source inline("{cursor}-{auto,default,pointer,wait,text,move,not-allowed,grab,grabbing,none,crosshair,zoom-in,zoom-out}");
+@source inline("{sm:,md:,lg:,xl:,}{cursor}-{auto,default,pointer,wait,text,move,not-allowed,grab,grabbing,none,crosshair,zoom-in,zoom-out}");
 /* overflow */
-@source inline("{overflow,overflow-x,overflow-y}-{auto,hidden,visible,scroll,clip}");
+@source inline("{sm:,md:,lg:,xl:,}{overflow,overflow-x,overflow-y}-{auto,hidden,visible,scroll,clip}");
 /* opacity */
-@source inline("{opacity}-{0,5,10,20,25,30,40,50,60,70,75,80,90,95,100}");
+@source inline("{sm:,md:,lg:,xl:,}{opacity}-{0,5,10,20,25,30,40,50,60,70,75,80,90,95,100}");
 /* position */
-@source inline("{static,fixed,absolute,relative,sticky}");
-@source inline("{top,right,bottom,left,inset}-{0,0.5,1,2,3,4,5,6,8,10,12,16,20,24,auto,full}");
-@source inline("{z}-{0,10,20,30,40,50,auto}");
-@source inline("{object}-{contain,cover,fill,none,scale-down}");
+@source inline("{sm:,md:,lg:,xl:,}{static,fixed,absolute,relative,sticky}");
+@source inline("{sm:,md:,lg:,xl:,}{top,right,bottom,left,inset}-{0,0.5,1,2,3,4,5,6,8,10,12,16,20,24,auto,full}");
+@source inline("{sm:,md:,lg:,xl:,}{z}-{0,10,20,30,40,50,auto}");
+@source inline("{sm:,md:,lg:,xl:,}{object}-{contain,cover,fill,none,scale-down}");
 
 @custom-variant dark (&:where(.dark, .dark *));
 
