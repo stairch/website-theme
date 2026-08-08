@@ -17,6 +17,7 @@ require get_template_directory() . '/inc/setup.php';
 require get_template_directory() . '/inc/cpt-members.php';
 require get_template_directory() . '/inc/cpt-former-members.php';
 require get_template_directory() . '/inc/cpt-sponsors.php';
+require get_template_directory() . '/inc/cpt-study-guide-links.php';
 
 // ACF field definitions
 require get_template_directory() . '/inc/acf-fields.php';

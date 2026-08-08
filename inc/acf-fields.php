@@ -176,6 +176,53 @@ function stair_register_acf_fields() {
         'label_placement' => 'top',
         'instruction_placement' => 'label',
     ]);
+
+    // study guide fields
+    acf_add_local_field_group([
+        'key'    => 'group_study_guide',
+        'title'  => 'Study Guide',
+        'fields' => [
+            [
+                'key'           => 'field_sg_cover_image',
+                'label'         => 'Cover Bild',
+                'name'          => 'sg_cover_image',
+                'type'          => 'image',
+                'return_format' => 'url',
+                'preview_size'  => 'medium',
+                'instructions'  => 'Titelbild des Study Guides.',
+            ],
+            [
+                'key'          => 'field_sg_download_url_de',
+                'label'        => 'Download-Link (DE)',
+                'name'         => 'sg_download_url_de',
+                'type'         => 'url',
+                'instructions' => 'Direkt-Link zur deutschen PDF-Version.',
+                'wrapper'      => ['width' => '50'],
+            ],
+            [
+                'key'          => 'field_sg_download_url_en',
+                'label'        => 'Download-Link (EN)',
+                'name'         => 'sg_download_url_en',
+                'type'         => 'url',
+                'instructions' => 'Direkt-Link zur englischen PDF-Version.',
+                'wrapper'      => ['width' => '50'],
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'page_template',
+                    'operator' => '==',
+                    'value'    => 'templates/study-guide.php',
+                ],
+            ],
+        ],
+        'menu_order'          => 0,
+        'position'            => 'normal',
+        'style'               => 'default',
+        'label_placement'     => 'top',
+        'instruction_placement' => 'label',
+    ]);
 }
 add_action('acf/init', 'stair_register_acf_fields');
 
