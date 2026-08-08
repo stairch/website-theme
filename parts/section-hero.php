@@ -7,6 +7,9 @@
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Willkommen bei STAIR</h1>
             <p class="text-lg sm:text-xl drop-shadow-md break-words hyphens-auto xs:break-none xs:hyphens-none" lang="de">Deine Studierendenorganisation für Informatik an der Hochschule Luzern.</p>
         </div>
-        <a href="/bewerbung/" class="inline-block mt-8 px-8 py-3.5 bg-primary text-white rounded no-underline font-semibold transition-all duration-300 hover:bg-[#094d42] hover:-translate-y-0.5 hover:shadow-lg">Werde Teil des Vorstands</a>
+        <div class="flex flex-col sm:flex-row gap-5 sm:gap-10 items-center justify-center mt-12">
+            <a href="/bewerbung/" class="inline-block w-full sm:w-auto px-8 py-3.5 bg-primary text-white rounded no-underline font-semibold transition-all duration-300 hover:bg-[#094d42] hover:-translate-y-0.5 hover:shadow-lg">Werde Teil des Vorstands</a>
+            <a href="/study-guide" class="inline-block w-full sm:w-auto px-8 py-3.5 bg-primary text-white rounded no-underline font-semibold transition-all duration-300 hover:bg-[#094d42] hover:-translate-y-0.5 hover:shadow-lg">Alles fürs 1. Semester</a>
+        </div>
     </div>
 </section>
