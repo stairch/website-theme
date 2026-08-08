@@ -98,18 +98,32 @@ if ($links_query->have_posts()) {
         }
         if ($has_links): ?>
             <section>
-                <h2 class="text-3xl font-bold text-text-dark dark:text-dark-text mb-8">Nützliche Links</h2>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <h2 class="text-3xl font-bold text-text-dark dark:text-dark-text">Nützliche Links</h2>
+                    <div class="relative w-full sm:w-72">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-dark-text-muted pointer-events-none"></i>
+                        <input
+                            type="search"
+                            id="links-search"
+                            placeholder="Links durchsuchen…"
+                            class="w-full pl-9 pr-4 py-2 rounded-lg border border-border-color dark:border-dark-border bg-white dark:bg-dark-surface text-text-dark dark:text-dark-text text-sm placeholder:text-text-light dark:placeholder:text-dark-text-muted focus:outline-none focus:border-primary dark:focus:border-primary-light transition-colors duration-200"
+                        />
+                    </div>
+                </div>
+
                 <?php foreach ($category_labels as $key => $label):
                     if (empty($links_by_category[$key])) {
                         continue;
                     } ?>
-                    <div class="mb-10">
+                    <div class="mb-10" data-category-section>
                         <h3 class="text-lg font-semibold text-text-dark dark:text-dark-text mb-4 pb-2 border-b border-border-color dark:border-dark-border">
                             <?php echo esc_html($label); ?>
                         </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             <?php foreach ($links_by_category[$key] as $link): ?>
                                 <a href="<?php echo esc_url($link['url']); ?>" target="_blank" rel="noopener"
+                                    data-link-title="<?php echo esc_attr(mb_strtolower($link['title'])); ?>"
+                                    data-link-desc="<?php echo esc_attr(mb_strtolower($link['description'])); ?>"
                                     class="group block rounded-lg border border-border-color dark:border-dark-border bg-white dark:bg-dark-surface p-4 transition-colors duration-200 hover:border-primary dark:hover:border-primary-light no-underline">
                                     <p class="flex items-center justify-between gap-2 text-sm font-semibold text-primary dark:text-primary-light mb-1">
                                         <?php echo esc_html($link['title']); ?>
@@ -129,7 +143,42 @@ if ($links_query->have_posts()) {
                         </div>
                     </div>
                 <?php endforeach; ?>
+
+                <p id="links-no-results" class="hidden text-text-light dark:text-dark-text-muted text-sm py-4">
+                    Keine Links gefunden.
+                </p>
             </section>
+
+            <script>
+            (function () {
+                const input = document.getElementById('links-search');
+                if (!input) return;
+
+                input.addEventListener('input', function () {
+                    const query = this.value.toLowerCase().trim();
+                    const sections = document.querySelectorAll('[data-category-section]');
+                    let totalVisible = 0;
+
+                    sections.forEach(function (section) {
+                        const cards = section.querySelectorAll('[data-link-title]');
+                        let visibleInSection = 0;
+
+                        cards.forEach(function (card) {
+                            const matches = !query
+                                || card.dataset.linkTitle.includes(query)
+                                || card.dataset.linkDesc.includes(query);
+                            card.style.display = matches ? '' : 'none';
+                            if (matches) visibleInSection++;
+                        });
+
+                        section.style.display = visibleInSection > 0 ? '' : 'none';
+                        totalVisible += visibleInSection;
+                    });
+
+                    document.getElementById('links-no-results').classList.toggle('hidden', totalVisible > 0);
+                });
+            })();
+            </script>
         <?php endif; ?>
 
     </div>
