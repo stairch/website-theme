@@ -71,14 +71,14 @@ if ($links_query->have_posts()) {
                 <?php endif; ?>
                 <div class="flex flex-col gap-y-4 w-full md:w-60">
                     <?php if ($download_url_de): ?>
-                        <a href="<?php echo esc_url($download_url_de); ?>" target="_blank" rel="noopener"
+                        <a href="<?php echo esc_url($download_url_de); ?>" target="_blank" rel="noopener" download
                             class="flex items-center justify-center py-3 px-6 bg-primary text-white font-bold rounded-xl hover:bg-primary-light transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5">
                             <span>Download (DE)</span>
                             <i data-lucide="download" class="w-5 h-5 ml-3 pointer-events-none"></i>
                         </a>
                     <?php endif; ?>
                     <?php if ($download_url_en): ?>
-                        <a href="<?php echo esc_url($download_url_en); ?>" target="_blank" rel="noopener"
+                        <a href="<?php echo esc_url($download_url_en); ?>" target="_blank" rel="noopener" download
                             class="flex items-center justify-center py-3 px-6 bg-primary text-white font-bold rounded-xl hover:bg-primary-light transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5">
                             <span>Download (EN)</span>
                             <i data-lucide="download" class="w-5 h-5 ml-3 pointer-events-none"></i>
