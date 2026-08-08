@@ -16,11 +16,11 @@ $download_url_de = function_exists('get_field') ? get_field('sg_download_url_de'
 $download_url_en = function_exists('get_field') ? get_field('sg_download_url_en') : '';
 
 $category_labels = [
-    'module'   => 'Module/Einschreibungen',
-    'alltag'   => 'Studien Alltag',
-    'software' => 'Software',
-    'hardware' => 'Hardware',
-    'partner'  => 'Partner',
+    'planung'       => 'Studienplanung',
+    'semester'      => 'Im Semester',
+    'prüfungsphase' => 'Prüfungsphase',
+    'hw&sw'         => 'Hardware & Software',
+    'sonstiges'     => 'Sonstiges',
 ];
 
 $links_by_category = array_fill_keys(array_keys($category_labels), []);
