@@ -149,6 +149,11 @@ html {
     @apply space-y-6;
 }
 
+.wpcf7-form div {
+    @apply space-y-6;
+}
+
+
 /* Form group styling */
 .wpcf7-form .form-group {
     @apply flex flex-col gap-2;
