@@ -24,5 +24,6 @@ function stair_load_assets() {
 
     wp_enqueue_script('stair-mobile-nav', get_template_directory_uri() . '/assets/mobile-nav.js', [], '1.0', true);
     wp_enqueue_script('stair-email-protect', get_template_directory_uri() . '/assets/email-protect.js', [], '1.1', true);
+    wp_enqueue_script('stair-cf7-file-input', get_template_directory_uri() . '/assets/cf7-file-input.js', [], '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'stair_load_assets');

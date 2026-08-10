@@ -190,6 +190,30 @@ html {
     padding-right: 2.5rem;
 }
 
+/* File upload field (CF7) */
+.cf7-file-wrapper {
+    @apply w-full text-sm text-gray-500 rounded-lg border border-gray-200 bg-gray-50 cursor-pointer transition-all duration-200;
+    @apply dark:bg-dark-bg dark:border-dark-border dark:text-dark-text-muted;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary;
+    padding: 0.65rem;
+}
+
+.cf7-file-wrapper:focus-within {
+    @apply ring-2 ring-primary/20 border-primary outline-none;
+}
+
+.cf7-file-button {
+    @apply inline-flex items-center px-4 py-2 mr-4 rounded-lg bg-primary text-white text-sm font-semibold border-0 cursor-pointer transition-colors duration-200;
+    @apply hover:bg-primary-light;
+    margin-block-end: 0 !important;
+}
+
+.cf7-file-label {
+    @apply text-sm text-gray-500 dark:text-dark-text-muted truncate;
+    margin-block-end: 0 !important;
+
+}
+
 /* Dark mode select arrow */
 .dark .wpcf7-form select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='%23a0a0a0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3e%3c/svg%3e");
