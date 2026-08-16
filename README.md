@@ -2,6 +2,8 @@
 
 A custom WordPress theme for the STAIR student association at HSLU.
 
+Original version by [jackra1n](https://github.com/jackra1n) and [Toemmsen96](https://github.com/Toemmsen96)
+
 ## Features
 
 - **Dark Mode** - System preference detection with manual toggle, persisted in localStorage
