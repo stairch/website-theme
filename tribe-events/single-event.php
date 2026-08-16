@@ -74,6 +74,31 @@ get_header();
                         <div class="prose prose-lg dark:prose-invert max-w-none marker:text-primary">
                             <?php the_content(); ?>
                         </div>
+
+                        <?php
+                        $primary_label   = function_exists('get_field') ? get_field('event_primary_label') : '';
+                        $primary_url     = function_exists('get_field') ? get_field('event_primary_url') : '';
+                        $secondary_label = function_exists('get_field') ? get_field('event_secondary_label') : '';
+                        $secondary_url   = function_exists('get_field') ? get_field('event_secondary_url') : '';
+
+                        if ($primary_url || $secondary_url): ?>
+                            <div class="mt-10 pt-8">
+                                <div class="flex flex-row gap-2">
+                                    <?php if ($primary_url): ?>
+                                        <a href="<?php echo esc_url($primary_url); ?>" target="_blank" rel="noopener"
+                                           class="flex items-center justify-center w-full py-3.5 px-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-light transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5">
+                                            <?php echo esc_html($primary_label ?: $primary_url); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if ($secondary_url): ?>
+                                        <a href="<?php echo esc_url($secondary_url); ?>" target="_blank" rel="noopener"
+                                           class="flex items-center justify-center w-full py-3.5 px-4 border border-primary text-primary font-bold rounded-xl hover:bg-bg-light dark:hover:bg-dark-bg transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5">
+                                            <?php echo esc_html($secondary_label ?: $secondary_url); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Right Column: Sidebar Details (5 cols) -->

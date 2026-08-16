@@ -177,6 +177,59 @@ function stair_register_acf_fields() {
         'instruction_placement' => 'label',
     ]);
 
+    // event link buttons
+    acf_add_local_field_group([
+        'key'    => 'group_event_buttons',
+        'title'  => 'Link Buttons',
+        'fields' => [
+            [
+                'key'          => 'field_event_primary_label',
+                'label'        => 'Primary Button - Label',
+                'name'         => 'event_primary_label',
+                'type'         => 'text',
+                'instructions' => 'z.B. «Ticket kaufen»',
+                'wrapper'      => ['width' => '50'],
+            ],
+            [
+                'key'          => 'field_event_primary_url',
+                'label'        => 'Primär Button – URL',
+                'name'         => 'event_primary_url',
+                'type'         => 'url',
+                'wrapper'      => ['width' => '50'],
+            ],
+            [
+                'key'          => 'field_event_secondary_label',
+                'label'        => 'Secondary Button - Label',
+                'name'         => 'event_secondary_label',
+                'type'         => 'text',
+                'instructions' => 'z.B. «Anmelden»',
+                'wrapper'      => ['width' => '50'],
+            ],
+            [
+                'key'          => 'field_event_secondary_url',
+                'label'        => 'Secondary Button – URL',
+                'name'         => 'event_secondary_url',
+                'type'         => 'url',
+                'wrapper'      => ['width' => '50'],
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'tribe_events',
+                ],
+            ],
+        ],
+        'menu_order'            => 0,
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
+    ]);
+
     // study guide fields
     acf_add_local_field_group([
         'key'    => 'group_study_guide',
