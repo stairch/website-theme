@@ -144,6 +144,161 @@ html {
     color: var(--color-primary);
 }
 
+/* ===== Dropdown / Submenu ===== */
+
+/*
+ * .nav-chevron is a <span> injected by mobile-nav.js inside each parent <a>.
+ * Because it lives inside the <a>, it inherits the link's hover colour automatically.
+ * On mobile the entire <a> is the toggle; no separate button is needed.
+ */
+.nav-chevron {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    /*margin-left: 2px;*/
+}
+
+.nav-chevron svg {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+/* Desktop: hover-driven dropdown */
+@media (min-width: 1024px) {
+    .nav-menu .menu-item-has-children {
+        position: relative;
+    }
+
+    /* Keep text and chevron on the same line */
+    .nav-menu .menu-item-has-children > a {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    /* Bridge appears only while the dropdown is already open.
+       When approaching from below the <li> is not yet :hover so the
+       ::after doesn't exist yet – no premature activation. */
+    .nav-menu .menu-item-has-children:hover::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+    }
+
+    /* Rotate chevron when the parent item is hovered */
+    .nav-menu .menu-item-has-children:hover > a > .nav-chevron svg {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown panel */
+    .nav-menu .sub-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: white;
+        border: 1px solid var(--color-border-color);
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        padding: 0.4rem 0;
+        min-width: 200px;
+        list-style: none;
+        z-index: 100;
+    }
+
+    /* Invisible extension: bridges the gap upward + wider area on sides and below.
+       Only active when the dropdown is already visible, so approaching from below
+       does NOT prematurely trigger the hover. */
+    .nav-menu .sub-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+        z-index: -1;
+    }
+
+    .dark .nav-menu .sub-menu {
+        background-color: var(--color-dark-surface);
+        border-color: var(--color-dark-border);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-menu .menu-item-has-children:hover > .sub-menu {
+        display: block;
+    }
+
+    .nav-menu .sub-menu .menu-item > a {
+        display: block;
+        padding: 0.45rem 1.2rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        color: var(--color-text-dark);
+        transition: color 0.15s ease;
+    }
+
+    .nav-menu .sub-menu .menu-item > a:hover {
+        color: var(--color-primary);
+    }
+
+    .dark .nav-menu .sub-menu .menu-item > a {
+        color: var(--color-dark-text);
+    }
+
+    .dark .nav-menu .sub-menu .menu-item > a:hover {
+        color: var(--color-primary);
+    }
+
+    .nav-menu .sub-menu .menu-item:first-child > a { border-radius: 8px 8px 0 0; }
+    .nav-menu .sub-menu .menu-item:last-child  > a { border-radius: 0 0 8px 8px; }
+    .nav-menu .sub-menu .menu-item:only-child  > a { border-radius: 8px; }
+}
+
+/* Mobile: click-to-expand, no navigation on parent items */
+@media (max-width: 1024px) {
+    /* Full width so the entire row is the toggle area */
+    .nav-menu .menu-item-has-children {
+        width: 100%;
+    }
+
+    /* <a> is a flex row: text + chevron inline, full width */
+    .nav-menu .menu-item-has-children > a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 4px;
+    }
+
+    /* Rotate chevron when the submenu is open */
+    .nav-menu .menu-item-has-children.submenu-open > a > .nav-chevron svg {
+        transform: rotate(180deg);
+    }
+
+    /* Sub-menu hidden until parent gets .submenu-open */
+    .nav-menu .sub-menu {
+        display: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.5rem 0 0 1rem;
+        list-style: none;
+        border-left: 2px solid var(--color-border-color);
+        margin-top: 0.5rem;
+    }
+
+    .dark .nav-menu .sub-menu {
+        border-left-color: var(--color-dark-border);
+    }
+
+    .nav-menu .menu-item-has-children.submenu-open > .sub-menu {
+        display: flex;
+    }
+}
+
 /* Contact Form 7 Styling */
 .wpcf7-form {
     @apply space-y-6;
