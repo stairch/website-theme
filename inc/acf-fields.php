@@ -177,11 +177,20 @@ function stair_register_acf_fields() {
         'instruction_placement' => 'label',
     ]);
 
-    // event link buttons
+    // event additional options
     acf_add_local_field_group([
         'key'    => 'group_event_buttons',
-        'title'  => 'Link Buttons',
+        'title'  => 'Erweiterte Optionen',
         'fields' => [
+            [
+                'key'           => 'field_event_banner_image',
+                'label'         => 'Titelbild',
+                'name'          => 'event_banner_image',
+                'type'          => 'image',
+                'return_format' => 'url',
+                'preview_size'  => 'medium',
+                'instructions'  => 'Wird oben oberhalb des Textes angezeigt.',
+            ],
             [
                 'key'          => 'field_event_primary_label',
                 'label'        => 'Primary Button - Label',

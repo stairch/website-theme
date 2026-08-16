@@ -71,6 +71,13 @@ get_header();
 
                     <!-- Left Column: Content (7 cols) -->
                     <div class="lg:col-span-7 xl:col-span-8">
+                        <?php $banner_image = function_exists('get_field') ? get_field('event_banner_image') : ''; ?>
+                        <?php if ($banner_image): ?>
+                            <div class="mb-12 rounded-xl overflow-hidden shadow-lg">
+                                <img src="<?php echo esc_url($banner_image); ?>" alt="<?php the_title_attribute(); ?>"
+                                    class="w-full h-auto object-cover" style="margin:0;" />
+                            </div>
+                        <?php endif; ?>
                         <div class="prose prose-lg dark:prose-invert max-w-none marker:text-primary">
                             <?php the_content(); ?>
                         </div>
