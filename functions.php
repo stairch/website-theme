@@ -22,6 +22,9 @@ require get_template_directory() . '/inc/cpt-study-guide-links.php';
 // ACF field definitions
 require get_template_directory() . '/inc/acf-fields.php';
 
+// Bewerbung positions CPT + CF7 dynamic tag
+require get_template_directory() . '/inc/cpt-bewerbung-positions.php';
+
 // Theme activation setup (pages and menu)
 require get_template_directory() . '/inc/theme-activation.php';
 

@@ -239,6 +239,74 @@ function stair_register_acf_fields() {
         'active'                => true,
     ]);
 
+    // bewerbung page - card title
+    acf_add_local_field_group([
+        'key'    => 'group_bewerbung_page',
+        'title'  => 'Bewerbungsseite',
+        'fields' => [
+            [
+                'key'          => 'field_bewerbung_title_semester',
+                'label'        => 'Semester der Bewerbungsphase',
+                'name'         => 'bewerbung_title_semester',
+                'type'         => 'text',
+                'instructions' => 'Wird in der Überschrift mit den offenen Positionen angezeigt.',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'page_template',
+                    'operator' => '==',
+                    'value'    => 'templates/bewerbung.php',
+                ],
+            ],
+        ],
+        'menu_order'            => 0,
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+    ]);
+
+    // bewerbung positions
+    acf_add_local_field_group([
+        'key'    => 'group_stair_position',
+        'title'  => 'Position',
+        'fields' => [
+            [
+                'key'           => 'field_position_active',
+                'label'         => 'Vakant (anzeigen)',
+                'name'          => 'position_active',
+                'type'          => 'true_false',
+                'default_value' => 1,
+                'ui'            => 1,
+                'instructions'  => 'Wenn aktiv, wird diese Position auf der Bewerbungsseite angezeigt und im Formular-Dropdown aufgeführt.',
+            ],
+            [
+                'key'          => 'field_position_description',
+                'label'        => 'Beschreibung',
+                'name'         => 'position_description',
+                'type'         => 'textarea',
+                'rows'         => 4,
+                'instructions' => 'Kurze Beschreibung der Rolle und ihrer Aufgaben.',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'stair_position',
+                ],
+            ],
+        ],
+        'menu_order'            => 0,
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+    ]);
+
     // study guide fields
     acf_add_local_field_group([
         'key'    => 'group_study_guide',
