@@ -77,20 +77,20 @@ get_header();
             <!-- Contact Info Sidebar -->
             <div class="space-y-6">
                 <!-- Email Card -->
-<!--                <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-6 transition-colors duration-300">-->
-<!--                    <div class="flex items-center gap-4 mb-3">-->
-<!--                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">-->
-<!--                            <i data-lucide="mail" class="w-6 h-6 text-primary"></i>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <h3 class="font-semibold text-text-dark dark:text-dark-text">E-Mail</h3>-->
-<!--                            --><?php
-//                            $contact_email = get_theme_mod('stair_contact_email', 'info@stair.ch');
-//                            stair_email_link($contact_email, 'text-primary hover:underline');
-//?>
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-6 transition-colors duration-300">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                            <i data-lucide="mail" class="w-6 h-6 text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-text-dark dark:text-dark-text">E-Mail</h3>
+                            <?php
+                            $contact_email = get_theme_mod('stair_contact_email', 'info@stair.ch');
+                            stair_email_link($contact_email, 'text-primary hover:underline');
+                            ?>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Social Card Desktop -->
                 <div class="hidden lg:block">
