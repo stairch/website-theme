@@ -40,9 +40,40 @@ get_header();
                 }
                 ?>
             </p>
+            <!-- Non-STAIR Promotion Hint -->
+            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-6 transition-colors duration-300 mt-12">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="alert-triangle" class="w-6 h-6 text-amber-500"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-semibold text-text-dark dark:text-dark-text">Werbeanfragen</h3>
+                        <div class="text-sm text-text-dark/70 dark:text-dark-text/70 mt-2 flex flex-col gap-2">
+                          <p>
+                              Anfragen für Werbung bearbeiten wir neu <strong>ausschliesslich</strong> über das 
+                              <a href="?request-type=Non-STAIR+Promotion" class="text-primary hover:underline">Non-STAIR Promotion Formular</a>. Anfragen per E-Mail werden <strong>nicht bearbeitet</strong>.
+                          </p>
+                          <p>
+                            Wir bitten um Verständnis und bedanken uns für Ihre Kooperation.
+                          </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php if (isset($_GET['request-type'])): // phpcs:ignore WordPress.Security.NonceVerification.Recommended?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const target = document.getElementById('request-form');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            </script>
+            <?php endif; ?>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-24" id="request-form">
             <!-- Contact Form -->
             <div class="lg:col-span-2">
                 <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-6 sm:p-8 transition-colors duration-300">
@@ -72,7 +103,7 @@ get_header();
             <div class="space-y-6">
                 <!-- Email Card -->
                 <div class="bg-white dark:bg-dark-surface rounded-xl shadow-md p-6 transition-colors duration-300">
-                    <div class="flex items-center gap-4 mb-3">
+                    <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                             <i data-lucide="mail" class="w-6 h-6 text-primary"></i>
                         </div>
