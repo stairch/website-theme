@@ -68,13 +68,14 @@ function stair_member_details_callback($post) {
 
     $position = get_post_meta($post->ID, '_stair_member_position', true);
     $study_status = get_post_meta($post->ID, '_stair_member_study_status', true);
+    $board_since = get_post_meta($post->ID, '_stair_member_board_since', true);
     $display_order = get_post_meta($post->ID, '_stair_member_order', true);
     ?>
     <table class="form-table">
         <tr>
             <th><label for="stair_member_position">Position</label></th>
             <td>
-                <input type="text" id="stair_member_position" name="stair_member_position" 
+                <input type="text" id="stair_member_position" name="stair_member_position"
                        value="<?php echo esc_attr($position); ?>" class="regular-text"
                        placeholder="e.g., Präsident, Vizepräsident, Kassier">
                 <p class="description">The member's role in STAIR</p>
@@ -83,10 +84,19 @@ function stair_member_details_callback($post) {
         <tr>
             <th><label for="stair_member_study_status">Study Status</label></th>
             <td>
-                <input type="text" id="stair_member_study_status" name="stair_member_study_status" 
+                <input type="text" id="stair_member_study_status" name="stair_member_study_status"
                        value="<?php echo esc_attr($study_status); ?>" class="regular-text"
                        placeholder="e.g., seit 2024 Informatik">
                 <p class="description">Study program and start year</p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="stair_member_board_since">Im Vorstand seit</label></th>
+            <td>
+                <input type="text" id="stair_member_board_since" name="stair_member_board_since"
+                       value="<?php echo esc_attr($board_since); ?>" class="regular-text"
+                       placeholder="e.g., seit 2023">
+                <p class="description">Seit wann dieses Mitglied im Vorstand ist</p>
             </td>
         </tr>
         <tr>
@@ -132,6 +142,10 @@ function stair_save_member_meta($post_id) {
         update_post_meta($post_id, '_stair_member_study_status', sanitize_text_field(wp_unslash($_POST['stair_member_study_status'])));
     }
 
+    if (isset($_POST['stair_member_board_since'])) {
+        update_post_meta($post_id, '_stair_member_board_since', sanitize_text_field(wp_unslash($_POST['stair_member_board_since'])));
+    }
+
     if (isset($_POST['stair_member_order'])) {
         update_post_meta($post_id, '_stair_member_order', absint(wp_unslash($_POST['stair_member_order'])));
     }
@@ -148,6 +162,7 @@ function stair_member_admin_columns($columns) {
         if ($key === 'title') {
             $new_columns['position'] = 'Position';
             $new_columns['study_status'] = 'Study Status';
+            $new_columns['board_since'] = 'Im Vorstand seit';
             $new_columns['order'] = 'Order';
         }
     }
@@ -165,6 +180,9 @@ function stair_member_admin_column_content($column, $post_id) {
             break;
         case 'study_status':
             echo esc_html(get_post_meta($post_id, '_stair_member_study_status', true));
+            break;
+        case 'board_since':
+            echo esc_html(get_post_meta($post_id, '_stair_member_board_since', true));
             break;
         case 'order':
             echo esc_html(get_post_meta($post_id, '_stair_member_order', true));
